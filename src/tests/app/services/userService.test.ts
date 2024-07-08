@@ -1,6 +1,6 @@
-import { UserService } from '../../../app/services/userService';
-import { UserRepositoryPort } from '../../../app/ports/userRepositoryPort';
-import { User } from '../../../domain/entities/user';
+import { UserService } from '../../../app/services/itemService';
+import { UserRepositoryPort } from '../../../app/ports/itemRepositoryPort';
+import { User } from '../../../domain/entities/item';
 
 class MockUserRepository implements UserRepositoryPort {
   private users: User[] = [];

@@ -1,10 +1,10 @@
 import express from 'express';
-import { addUser, fetchUsers } from './infrastructure/adapters/controllers/userController';
+import { addItens, fetchItens } from './infrastructure/adapters/controllers/itemController';
 
 const app = express();
 
 app.use(express.json());
-app.post('/users', addUser);
-app.get('/users', fetchUsers);
+app.post('/itens', addItens);
+app.get('/itens', fetchItens);
 
 export default app;
