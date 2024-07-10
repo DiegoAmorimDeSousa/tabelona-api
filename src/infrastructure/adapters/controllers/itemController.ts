@@ -35,3 +35,18 @@ export const fetchItens = async (req: Request, res: Response) => {
     }
   }
 };
+
+export const updateItem = async (req: Request, res: Response) => {
+  try {
+    const { quantity, id } = req.body;
+
+    const item = await itemService.updateItem(quantity, id);
+    res.status(200).json(item);
+  } catch (error) {
+    if (error instanceof Error) {
+      res.status(400).json({ error: error.message });
+    } else {
+      res.status(400).json({ error: 'An unknown error occurred' });
+    }
+  }
+};
