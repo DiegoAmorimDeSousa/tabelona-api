@@ -4,14 +4,12 @@ import { Item } from '../../../domain/entities/item';
 import mongoose, { Document, Schema } from 'mongoose';
 
 interface ItemDocument extends Document {
-  id: String;
   name: string;
   link: string;
   quantity: number;
 }
 
 const itemSchema = new Schema<ItemDocument>({
-  id: { type: String, required: true },
   name: { type: String, required: true },
   link: { type: String, required: true },
   quantity: { type: Number, required: true },
@@ -31,9 +29,10 @@ export class MongoItemRepository implements ItemRepositoryPort {
     return itemDocs.map(itemDoc => new Item(itemDoc.id, itemDoc.name, itemDoc.link, itemDoc.quantity));
   }
 
-  async updateItem(quantity: String, id: String): Promise<Item[]> {
-    console.log(quantity, id)
-    const itemDocs = await ItemModel.find({ _id: id });
-    return itemDocs.map(itemDoc => new Item(itemDoc.id, itemDoc.name, itemDoc.link, itemDoc.quantity));
+  async updateItem(quantity: number, name: string): Promise<Item> {
+    const itemDoc = await ItemModel.findOne({ name: name });
+    const newQuantity = itemDoc?.quantity ? itemDoc?.quantity - quantity : quantity;
+    const itemDocUpdate = await ItemModel.findOneAndUpdate({ name: name }, { quantity: newQuantity }, { new: true });
+    return new Item(itemDocUpdate?.id, itemDocUpdate?.name || '', itemDocUpdate?.link || '', itemDocUpdate?.quantity || 0);
   }
 }

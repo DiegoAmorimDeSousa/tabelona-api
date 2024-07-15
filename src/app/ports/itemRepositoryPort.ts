@@ -3,5 +3,5 @@ import { Item } from '../../domain/entities/item';
 export interface ItemRepositoryPort {
   createItem(user: Item): Promise<Item>;
   getAllItens(): Promise<Item[]>;
-  updateItem(quantity: String, id: String): Promise<Item[]>;
+  updateItem(quantity: number, id: String): Promise<Item>;
 }

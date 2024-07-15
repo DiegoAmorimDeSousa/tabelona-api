@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import { ItemService } from '../../../app/services/itemService';
-import { MongoItemRepository } from '../repositories/mongoLoginRepository';
+import { MongoItemRepository } from '../repositories/mongoItemRepository';
 import { Item } from '../../../domain/entities/item';
 
 const itemRepository = new MongoItemRepository();
@@ -38,9 +38,9 @@ export const fetchItens = async (req: Request, res: Response) => {
 
 export const updateItem = async (req: Request, res: Response) => {
   try {
-    const { quantity, id } = req.body;
+    const { quantity, name } = req.body;
 
-    const item = await itemService.updateItem(quantity, id);
+    const item = await itemService.updateItem(quantity, name);
     res.status(200).json(item);
   } catch (error) {
     if (error instanceof Error) {

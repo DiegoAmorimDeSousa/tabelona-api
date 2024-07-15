@@ -13,7 +13,7 @@ export class ItemService {
     return await this.itemRepository.getAllItens();
   }
 
-  async updateItem(quantity: String, id: string): Promise<Item[]> {
-    return await this.itemRepository.updateItem(quantity, id);
+  async updateItem(quantity: number, name: string): Promise<Item> {
+    return await this.itemRepository.updateItem(quantity, name);
   }
 }
