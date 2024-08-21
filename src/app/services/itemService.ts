@@ -4,8 +4,8 @@ import { Item } from '../../domain/entities/item';
 export class ItemService {
   constructor(private readonly itemRepository: ItemRepositoryPort) {}
 
-  async createItem(name: string, link: string, quantity: number): Promise<Item> {
-    const item = new Item('', name, link, quantity);
+  async createItem(name: string, link: string, quantity: number, place: string): Promise<Item> {
+    const item = new Item('', name, link, quantity, place);
     return await this.itemRepository.createItem(item);
   }
 

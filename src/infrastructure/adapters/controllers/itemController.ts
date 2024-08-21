@@ -10,7 +10,7 @@ export const addItens = async (req: Request, res: Response) => {
   try {
     const itemBody = req.body;
     itemBody.forEach(async (item: Item) => {
-      await itemService.createItem(item.name, item.link, item.quantity);
+      await itemService.createItem(item.name, item.link, item.quantity, item.place);
     });
 
     return res.status(200).json(true);
