@@ -2,6 +2,7 @@ import { Request, Response } from 'express';
 import { ItemService } from '../../../app/services/itemService';
 import { MongoItemRepository } from '../repositories/mongoItemRepository';
 import { Item } from '../../../domain/entities/item';
+import axios from 'axios';
 
 const itemRepository = new MongoItemRepository();
 const itemService = new ItemService(itemRepository);
@@ -41,6 +42,8 @@ export const updateItem = async (req: Request, res: Response) => {
     const { quantity, name } = req.body;
 
     const item = await itemService.updateItem(quantity, name);
+    const message = 'Item que foi escolhido: ' + name + '\n\n, quantidade escolhida: ' + quantity
+    axios.post(`https://api.callmebot.com/whatsapp.php?phone=554888101647&text=${message}&apikey=${process.env.API_KEY}`)
     res.status(200).json(item);
   } catch (error) {
     if (error instanceof Error) {
@@ -48,5 +51,6 @@ export const updateItem = async (req: Request, res: Response) => {
     } else {
       res.status(400).json({ error: 'An unknown error occurred' });
     }
-  }
-};
+  };
+  
+}
