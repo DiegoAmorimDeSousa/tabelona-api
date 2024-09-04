@@ -5,7 +5,7 @@ import { addItens, fetchItens, updateItem } from './infrastructure/adapters/cont
 const app = express();
 
 app.use(cors({
-  origin: 'http://localhost:3000',
+  origin: 'https://make-lista-web.vercel.app/',
   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
   allowedHeaders: '*',
 }));
