@@ -1,42 +1,74 @@
-import { randomUUID } from 'crypto';
-import { ItemRepositoryPort } from '../../../app/ports/itemRepositoryPort';
-import { Item } from '../../../domain/entities/item';
+import { TeamRepositoryPort } from '../../../app/ports/teamRepositoryPort';
+import { Team } from '../../../domain/entities/team';
 import mongoose, { Document, Schema } from 'mongoose';
 
-interface ItemDocument extends Document {
+interface TeamDocument extends Document {
   name: string;
-  link: string;
-  quantity: number;
-  place: string;
-  price: string;
+  logo: string;
+  address: {
+    country: string;
+    state: string;
+    city: string;
+  };
+  season: [
+    {
+      name: string;
+      position: number;
+      wins: number;
+      points: number;
+      draws: number;
+      defeat: number;
+      proGoals: number;
+      onwGoals: number;
+      stagePlayOff?: string;
+      status: string;
+    }
+  ];
 }
 
-const itemSchema = new Schema<ItemDocument>({
+const teamSchema = new Schema<TeamDocument>({
   name: { type: String, required: true },
-  link: { type: String, required: true },
-  quantity: { type: Number, required: true },
-  place: { type: String, required: true },
-  price: { type: String, required: true }
+  logo: { type: String, required: true },
+  address: {
+    country: { type: String, required: true },
+    state: { type: String, required: true },
+    city: { type: String, required: true },
+  },
+  season: [
+    {
+      name: { type: String, required: true },
+      position: { type: Number, required: true },
+      wins: { type: Number, required: true },
+      points: { type: Number, required: true },
+      draws: { type: Number, required: true },
+      defeat: { type: Number, required: true },
+      proGoals: { type: Number, required: true },
+      onwGoals: { type: Number, required: true },
+      stagePlayOff: { type: String, required: false },
+      status: { type: String, required: true }
+    }
+  ]
 });
 
-const ItemModel = mongoose.model<ItemDocument>('Item', itemSchema);
+const TeamModel = mongoose.model<TeamDocument>('Team', teamSchema);
 
-export class MongoItemRepository implements ItemRepositoryPort {
-  async createItem(item: Item): Promise<Item> {
-    const itemDoc = new ItemModel({ id: randomUUID(), name: item.name, link: item.link, quantity: item.quantity, place: item.place, price: item.price });
+export class MongoItemRepository implements TeamRepositoryPort {
+  async createTeam(item: Team): Promise<Team> {
+    const itemDoc = new TeamModel({
+      name: item.name,
+      logo: item.logo,
+      address: item.address,
+      season: item.season,
+    });
+
     await itemDoc.save();
-    return new Item(itemDoc.id, itemDoc.name, itemDoc.link, itemDoc.quantity, itemDoc.place, itemDoc.price);
-  }
 
-  async getAllItens(): Promise<Item[]> {
-    const itemDocs = await ItemModel.find();
-    return itemDocs.map(itemDoc => new Item(itemDoc.id, itemDoc.name, itemDoc.link, itemDoc.quantity, itemDoc.place, itemDoc.price));
-  }
-
-  async updateItem(quantity: number, name: string): Promise<Item> {
-    const itemDoc = await ItemModel.findOne({ name: name });
-    const newQuantity = itemDoc?.quantity ? itemDoc?.quantity - quantity : quantity;
-    const itemDocUpdate = await ItemModel.findOneAndUpdate({ name: name }, { quantity: newQuantity }, { new: true });
-    return new Item(itemDocUpdate?.id, itemDocUpdate?.name || '', itemDocUpdate?.link || '', itemDocUpdate?.quantity || 0, itemDocUpdate?.place || '', itemDocUpdate?.price || '');
+    return new Team(
+      itemDoc.id,
+      itemDoc.name,
+      itemDoc.logo,
+      itemDoc.address,
+      itemDoc.season
+    );
   }
 }

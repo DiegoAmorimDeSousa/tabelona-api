@@ -1,6 +1,6 @@
 import express from 'express';
 import cors from 'cors';
-import { addItens, fetchItens, updateItem } from './infrastructure/adapters/controllers/itemController';
+import { addTeam } from './infrastructure/adapters/controllers/team';
 
 const app = express();
 
@@ -12,8 +12,8 @@ app.use(cors({
 
 app.use(express.json());
 
-app.post('/itens', addItens);
-app.get('/itens', fetchItens);
-app.put('/itens', updateItem);
+app.post('/team', addTeam);
+// app.get('/itens', fetchItens);
+// app.put('/itens', updateItem);
 
 export default app;
