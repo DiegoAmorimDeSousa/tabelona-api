@@ -3,6 +3,8 @@ export class Team {
     public id: string,
     public name: string,
     public logo: string,
+    public slug: string,
+    public updateAt: string,
     public address: {
       country: string,
       state: string,

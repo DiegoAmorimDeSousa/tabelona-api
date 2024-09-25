@@ -1,6 +1,7 @@
 import express from 'express';
 import cors from 'cors';
-import { addTeam } from './infrastructure/adapters/controllers/team';
+import { addTeam, getAllTeams, getTeamBySlug, updateTeam, getTable } from './infrastructure/adapters/controllers/team';
+import { getTournament } from './infrastructure/adapters/controllers/tournament';
 
 const app = express();
 
@@ -13,6 +14,11 @@ app.use(cors({
 app.use(express.json());
 
 app.post('/team', addTeam);
+app.get('/teams', getAllTeams);
+app.get('/teams/slug', getTeamBySlug);
+app.put('/team', updateTeam);
+app.get('/team/tables', getTable);
+app.get('/tournament/:tournamentName', getTournament);
 // app.get('/itens', fetchItens);
 // app.put('/itens', updateItem);
 
