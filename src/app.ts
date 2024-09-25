@@ -19,7 +19,5 @@ app.get('/teams/slug', getTeamBySlug);
 app.put('/team', updateTeam);
 app.get('/team/tables', getTable);
 app.get('/tournament/:tournamentName', getTournament);
-// app.get('/itens', fetchItens);
-// app.put('/itens', updateItem);
 
 export default app;

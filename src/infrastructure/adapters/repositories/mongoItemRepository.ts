@@ -75,10 +75,13 @@ export class MongoItemRepository implements TeamRepositoryPort {
   async getTables(): Promise<any> {
     const teamDocs = await TeamModel.find().select('name logo season');
     const serieABrasil: any = [];
+    const serieBBrasil: any = [];
     const teams = teamDocs.map((doc: any) => {
       const getSerieABrasil = doc.season.filter((season: any) => season.name === 'Série A - Brasil');
+      const getSerieBBrasil = doc.season.filter((season: any) => season.name === 'Série B - Brasil');
       
       if(getSerieABrasil.length) serieABrasil.push({...getSerieABrasil[0]?._doc, name: doc.name})
+      if(getSerieBBrasil.length) serieBBrasil.push({...getSerieBBrasil[0]?._doc, name: doc.name})
 
       const team = new Team(
         doc.id,
@@ -106,7 +109,18 @@ export class MongoItemRepository implements TeamRepositoryPort {
       return 0;
     });
 
-    return [{serieABrasil: sortedTeamsSerieABrasil}];
+    const sortedTeamsSerieABBrasil = serieBBrasil.sort((a: any, b: any) => {
+      if (b.points !== a.points) return b.points - a.points;
+      if (b.wins !== a.wins) return b.wins - a.wins;
+      if (b.proGoals !== a.proGoals) return b.proGoals - a.proGoals;
+      if (a.onwGoals !== b.onwGoals) return a.onwGoals - b.onwGoals;
+      if (a.draws !== b.draws) return a.draws - b.draws;
+      if (a.position !== b.position) return a.position - b.position;
+    
+      return 0;
+    });
+
+    return [{serieABrasil: sortedTeamsSerieABrasil, serieBBrasil: sortedTeamsSerieABBrasil}];
   }
 
   async getTeamBySlug(slug: string): Promise<Team | null> {
@@ -133,6 +147,7 @@ export class MongoItemRepository implements TeamRepositoryPort {
     const itemDoc = new TeamModel({
       name: item.name,
       logo: item.logo,
+      slug: item.slug,
       address: item.address,
       season: item.season,
     });

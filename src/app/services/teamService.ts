@@ -7,7 +7,7 @@ export class TeamService {
   async createTeam(teamBody: any): Promise<Team> {
     const { name, logo, address, season, slug } = teamBody;
 
-    const team = new Team('', '', name, logo, address, season, slug);
+    const team = new Team('', name, logo, slug, '', address, season);
 
     return await this.teamRepository.createTeam(team);
   }

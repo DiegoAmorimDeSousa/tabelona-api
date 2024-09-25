@@ -15,7 +15,7 @@ const fetchAllTeamsAutomatically = async () => {
   }
 };
 
-cron.schedule('40 18 * * *', fetchAllTeamsAutomatically);
+cron.schedule('59 23 * * *', fetchAllTeamsAutomatically);
 
 fetchAllTeamsAutomatically();
 

@@ -42,7 +42,7 @@ export class MongoTournamentRepository implements TournamentRepositoryPort {
             const awayTeam = await teamService.getTeamBySlug(awayTeamSlug);
             const team = homeTeam || awayTeam;
 
-            if (team) {
+            if (team && team?.updateAt !== formattedDate) {
               let win = false;
               let draw = false;
               let defeat = false;
