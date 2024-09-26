@@ -176,6 +176,7 @@ export class MongoItemRepository implements TeamRepositoryPort {
     itemDoc.logo = team.logo;
     itemDoc.address = team.address;
     itemDoc.season = team.season;
+    itemDoc.updateAt = team.updateAt;
   
     await itemDoc.save();
   
