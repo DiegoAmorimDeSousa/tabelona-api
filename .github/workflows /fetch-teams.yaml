@@ -3,7 +3,7 @@ name: Fetch All Teams
 # Executa a cada dia às 19:54
 on:
   schedule:
-    - cron: '05 20 * * *'
+    - cron: '12 20 * * *'
 
 jobs:
   fetch-teams:
