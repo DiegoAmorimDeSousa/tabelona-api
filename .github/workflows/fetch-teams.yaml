@@ -1,13 +1,13 @@
 name: Fetch All Teams
 
-# Executa a cada dia às 19:54
+# Executa a cada dia às 20:21
 on:
   schedule:
-    - cron: '16 20 * * *'
+    - cron: '21 20 * * *'
 
 jobs:
   fetch-teams:
     runs-on: ubuntu-latest
     steps:
       - name: Call API to fetch all teams
-        run: curl -X POST https://your-api-domain.com/api/fetchAllTeams
+        run: curl -X POST https://tabelona-api.vercel.app/teams/cron
