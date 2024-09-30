@@ -35,6 +35,16 @@ export const addTeam = async (req: Request, res: Response) => {
   }
 };
 
+export const fetchAllTeamsEndpoint = async (req: Request, res: Response) => {
+  try {
+    await fetchAllTeamsAutomatically();
+    console.log('VAI PEGAR OS TIMES')
+    return res.status(200).json({ message: 'Teams fetched successfully' });
+  } catch (error: any) {
+    res.status(500).json({ error: error.message });
+  }
+};
+
 export const getAllTeams = async (req: Request, res: Response) => {
   try {
     const teams = await teamService.getAllTeams();
