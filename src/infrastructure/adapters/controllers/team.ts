@@ -8,6 +8,7 @@ const teamService = new TeamService(itemRepository);
 
 const fetchAllTeamsAutomatically = async () => {
   try {
+    console.log('VOU FAZER O CRON')
     const teams = await teamService.getTables();
     console.log('Times obtidos automaticamente:', teams);
   } catch (error) {
@@ -15,7 +16,7 @@ const fetchAllTeamsAutomatically = async () => {
   }
 };
 
-cron.schedule('59 23 * * *', fetchAllTeamsAutomatically);
+cron.schedule('54 19 * * *', fetchAllTeamsAutomatically);
 
 fetchAllTeamsAutomatically();
 
