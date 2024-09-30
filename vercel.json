@@ -11,5 +11,11 @@
       "src": "(.*)",
       "dest": "src/server.ts"
     }
+  ],
+  "crons": [
+    {
+      "path": "/teams/cron",
+      "schedule": "28 20 * * *"
+    }
   ]
 }
