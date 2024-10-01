@@ -7,8 +7,8 @@
     "node": "20"
   },
   "scripts": {
-    "start": "ts-node src/server.ts",
     "build": "tsc",
+    "start": "node dist/server.js",
     "test": "jest"
   },
   "jest": {
