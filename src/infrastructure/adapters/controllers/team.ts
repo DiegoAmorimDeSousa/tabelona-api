@@ -2,23 +2,23 @@ import { Request, Response } from 'express';
 import { TeamService } from '../../../app/services/teamService';
 import { MongoItemRepository } from '../repositories/mongoItemRepository';
 import cron from 'node-cron';
+import { MongoTournamentRepository } from '../repositories/mongoTournamentRepository';
+import { TournamentService } from '../../../app/services/tournamentService';
 
 const itemRepository = new MongoItemRepository();
 const teamService = new TeamService(itemRepository);
 
+const tournamentRepository = new MongoTournamentRepository();
+const tournamentService = new TournamentService(tournamentRepository);
+
 const fetchAllTeamsAutomatically = async () => {
   try {
-    console.log('VOU FAZER O CRON')
-    const teams = await teamService.getTables();
-    console.log('Times obtidos automaticamente:', teams);
+    await tournamentService.getTournament('');
+    console.log('------ CRON REALIZADO ------')
   } catch (error) {
     console.error('Erro ao obter times automaticamente:', error);
   }
 };
-
-cron.schedule('20 20 * * *', fetchAllTeamsAutomatically);
-
-fetchAllTeamsAutomatically();
 
 export const addTeam = async (req: Request, res: Response) => {
   try {
@@ -37,8 +37,8 @@ export const addTeam = async (req: Request, res: Response) => {
 
 export const fetchAllTeamsEndpoint = async (req: Request, res: Response) => {
   try {
+    console.log('----- INICIANDO O CRON -----')
     await fetchAllTeamsAutomatically();
-    console.log('VAI PEGAR OS TIMES')
     return res.status(200).json({ message: 'Teams fetched successfully' });
   } catch (error: any) {
     res.status(500).json({ error: error.message });

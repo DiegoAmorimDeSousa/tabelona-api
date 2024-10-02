@@ -1,9 +1,9 @@
 name: Fetch All Teams
 
-# Executa a cada dia às 20:21
+# Executa todos os dias às 23:50 no horário local (UTC-3), o que corresponde a 02:50 UTC
 on:
   schedule:
-    - cron: '50 20 * * *'
+    - cron: '50 02 * * *'
 
 jobs:
   fetch-teams:
