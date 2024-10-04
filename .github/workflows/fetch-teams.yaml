@@ -10,4 +10,4 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Call API to fetch all teams
-        run: curl -X POST https://tabelona-api.onrender.com/teams/cron
+        run: curl -X GET https://tabelona-api.onrender.com/teams/cron
