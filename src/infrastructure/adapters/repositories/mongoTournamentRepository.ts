@@ -38094,34 +38094,23 @@ export class MongoTournamentRepository implements TournamentRepositoryPort {
           if (event.status?.type === 'finished') {
             const homeTeamSlug = event?.homeTeam?.slug;
             const awayTeamSlug = event?.awayTeam?.slug;
-
-            const homeTeam = await teamService.getTeamBySlug(homeTeamSlug);
-            const awayTeam = homeTeam ? false : await teamService.getTeamBySlug(awayTeamSlug);
-            const team = homeTeam || awayTeam;
 						const twoDaysInMs = 2 * 24 * 60 * 60 * 1000;
 						const formattedDateObj = new Date(`${formattedDate}T00:00:00`);
-            if (team && team.updateAt && (formattedDateObj.getTime() - new Date(team.updateAt).getTime() > twoDaysInMs) || team && !team?.updateAt) {
-              let win = false;
+
+            const homeTeam = await teamService.getTeamBySlug(homeTeamSlug);
+						if (homeTeam && homeTeam.updateAt && (formattedDateObj.getTime() - new Date(homeTeam.updateAt).getTime() > twoDaysInMs) || homeTeam && !homeTeam?.updateAt) {
+							let win = false;
               let draw = false;
               let defeat = false;
               let goalsPro = 0;
               let goalsOwn = 0;
-              if (homeTeam) {
-                if (event?.homeScore?.current > event?.awayScore?.current) win = true;
-                if (event?.homeScore?.current < event?.awayScore?.current) defeat = true;
-                goalsPro = event?.homeScore?.current;
-                goalsOwn = event?.awayScore?.current;
-              }
-              if (awayTeam) {
-                if (event?.homeScore?.current < event?.awayScore?.current) win = true;
-                if (event?.homeScore?.current > event?.awayScore?.current) defeat = true;
-                goalsOwn = event?.homeScore?.current;
-                goalsPro = event?.awayScore?.current;
-              }
+							if (event?.homeScore?.current > event?.awayScore?.current) win = true;
+							if (event?.homeScore?.current < event?.awayScore?.current) defeat = true;
+							if (event?.homeScore?.current === event?.awayScore?.current) draw = true;
+							goalsPro = event?.homeScore?.current;
+							goalsOwn = event?.awayScore?.current;
 
-              if (event?.homeScore?.current === event?.awayScore?.current) draw = true;
-
-              const newSeason = await team?.season?.map((season: any) => {
+							const newSeason = await homeTeam?.season?.map((season: any) => {
                 if(season?.status === 'in progress'){
                   let newWins = season?.wins;
                   let newDraws = season?.draws;
@@ -38153,15 +38142,68 @@ export class MongoTournamentRepository implements TournamentRepositoryPort {
               });
 
               const updateItemData = {
-                ...team,
+                ...homeTeam,
                 updateAt: formattedDate,
                 season: newSeason
               };
 
               await teamService.update(updateItemData);
+						}
 
+						const awayTeam = await teamService.getTeamBySlug(awayTeamSlug);
+
+						if (awayTeam && awayTeam.updateAt && (formattedDateObj.getTime() - new Date(awayTeam.updateAt).getTime() > twoDaysInMs) || awayTeam && !awayTeam?.updateAt) {
+							let win = false;
+              let draw = false;
+              let defeat = false;
+              let goalsPro = 0;
+              let goalsOwn = 0;
+							if (event?.homeScore?.current < event?.awayScore?.current) win = true;
+							if (event?.homeScore?.current > event?.awayScore?.current) defeat = true;
+							if (event?.homeScore?.current === event?.awayScore?.current) draw = true;
+							goalsOwn = event?.homeScore?.current;
+							goalsPro = event?.awayScore?.current;
+
+							const newSeason = await awayTeam?.season?.map((season: any) => {
+                if(season?.status === 'in progress'){
+                  let newWins = season?.wins;
+                  let newDraws = season?.draws;
+                  let newDefeat = season?.defeat;
+                  let newPoints = season?.points;
+                  const proGoals = season?.proGoals + goalsPro;
+                  const onwGoals = season?.onwGoals + goalsOwn;
+
+                  if(win) {
+                    newWins = newWins + 1;
+                    newPoints = newPoints + 3;
+                  };
+                  if(draw) {
+                    newDraws = newDraws + 1;
+                    newPoints = newPoints + 1;
+                  };
+                  if(defeat) newDefeat = newDefeat + 1;
+                  return {
+                    ...season?._doc,
+                    wins: newWins,
+                    draws: newDraws,
+                    defeat: newDefeat,
+                    points: newPoints,
+                    proGoals,
+                    onwGoals
+                  }
+                }
+                return season
+              });
+
+              const updateItemData = {
+                ...awayTeam,
+                updateAt: formattedDate,
+                season: newSeason
+              };
+
+              await teamService.update(updateItemData);
+						}
               return true
-            }
           }
           return null; 
         }));
