@@ -80,8 +80,8 @@ export class MongoItemRepository implements TeamRepositoryPort {
       const getSerieABrasil = doc.season.filter((season: any) => season.name === 'Série A - Brasil');
       const getSerieBBrasil = doc.season.filter((season: any) => season.name === 'Série B - Brasil');
       
-      if(getSerieABrasil.length) serieABrasil.push({...getSerieABrasil[0]?._doc, name: doc.name})
-      if(getSerieBBrasil.length) serieBBrasil.push({...getSerieBBrasil[0]?._doc, name: doc.name})
+      if(getSerieABrasil.length) serieABrasil.push({...getSerieABrasil[0]?._doc, name: doc.name, logo: doc.logo})
+      if(getSerieBBrasil.length) serieBBrasil.push({...getSerieBBrasil[0]?._doc, name: doc.name, logo: doc.logo})
 
       const team = new Team(
         doc.id,
