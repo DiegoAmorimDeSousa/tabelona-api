@@ -6,7 +6,7 @@ import { getTournament } from './infrastructure/adapters/controllers/tournament'
 const app = express();
 
 app.use(cors({
-  origin: 'https://make-lista-web.vercel.app',
+  origin: ['http://localhost:5173', 'https://tabelona-web.vercel.app'],
   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
   allowedHeaders: '*',
 }));
