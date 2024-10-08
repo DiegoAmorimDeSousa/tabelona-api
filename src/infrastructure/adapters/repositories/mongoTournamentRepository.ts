@@ -38221,35 +38221,71 @@ export class MongoTournamentRepository implements TournamentRepositoryPort {
   }
 
 	async getTournamentByDate(date: string): Promise<any> {
-		const options = {
-			method: 'GET',
-			url: `${process.env.URL_RAPID_API}/football-scheduled-events`,
-			params: { date: date },
-			headers: {
-				'X-RapidAPI-Key': process.env.X_RAPIDAPI_KEY,
-				'X-RapidAPI-Host': process.env.X_RAPIDAPI_HOST
-			},
-			timeout: 10000 
-		};
+    const options = {
+        method: 'GET',
+        url: `${process.env.URL_RAPID_API}/football-scheduled-events`,
+        params: { date: date },
+        headers: {
+            'X-RapidAPI-Key': process.env.X_RAPIDAPI_KEY,
+            'X-RapidAPI-Host': process.env.X_RAPIDAPI_HOST
+        },
+        timeout: 10000 
+    };
 
-		const response = await axios.request(options);
-		const eventsToday: any = [];
-		if(response && response?.data?.status === 'success'){
-			const events = response.data?.response?.events || [];
-			await events?.forEach((event: any) => {
-				if(event?.tournament?.category?.slug === 'brazil'){
-					eventsToday.push({
-						homeTeam: event?.homeTeam?.name,
-						awayTeam: event?.awayTeam?.name,
-						homeScore: event?.homeScore?.current,
-						awayScore: event?.awayScore?.current,
-						roundInfo: event?.roundInfo,
-						status: event?.status?.type
-					})
-				}
-			});
-		}
+    const response = await axios.request(options);
+    const eventsToday: any = [];
 
-		return eventsToday;
-	}
+    if (response && response?.data?.status === 'success') {
+        const events = response.data?.response?.events || [];
+
+        for (const event of events) {
+            if (event?.tournament?.category?.slug === 'brazil') {
+                const homeTeamId = event?.homeTeam?.id;
+                const awayTeamId = event?.awayTeam?.id;
+
+                const optionsHomeTeam = {
+                    method: 'GET',
+                    url: `${process.env.URL_RAPID_API}/football-league-team`,
+                    params: { teamid: homeTeamId },
+                    headers: {
+                        'X-RapidAPI-Key': process.env.X_RAPIDAPI_KEY,
+                        'X-RapidAPI-Host': process.env.X_RAPIDAPI_HOST
+                    },
+                    timeout: 10000 
+                };
+
+                const optionsAwayTeam = {
+                    method: 'GET',
+                    url: `${process.env.URL_RAPID_API}/football-league-team`,
+                    params: { teamid: awayTeamId },
+                    headers: {
+                        'X-RapidAPI-Key': process.env.X_RAPIDAPI_KEY,
+                        'X-RapidAPI-Host': process.env.X_RAPIDAPI_HOST
+                    },
+                    timeout: 10000 
+                };
+
+                const [responseHomeTeam, responseAwayTeam]: any = await Promise.all([
+                    axios.request(optionsHomeTeam),
+                    axios.request(optionsAwayTeam)
+                ]);
+
+                eventsToday.push({
+                    homeTeam: event?.homeTeam?.name,
+                    awayTeam: event?.awayTeam?.name,
+                    homeScore: event?.homeScore?.current,
+                    awayScore: event?.awayScore?.current,
+                    roundInfo: event?.roundInfo,
+                    status: event?.status?.type,
+                    tournament: event?.season?.name,
+										homeTeamLogo: responseHomeTeam?.data?.response?.team?.logourl,
+										awayTeamLogo: responseAwayTeam?.data?.response?.team?.logourl,
+                });
+            }
+        }
+    }
+
+    return eventsToday;
+}
+
 }
