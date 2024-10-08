@@ -38240,35 +38240,48 @@ export class MongoTournamentRepository implements TournamentRepositoryPort {
 
         for (const event of events) {
             if (event?.tournament?.category?.slug === 'brazil') {
-                const homeTeamId = event?.homeTeam?.id;
-                const awayTeamId = event?.awayTeam?.id;
+                // const homeTeamId = event?.homeTeam?.id;
+                // const awayTeamId = event?.awayTeam?.id;
 
-                const optionsHomeTeam = {
-                    method: 'GET',
-                    url: `${process.env.URL_RAPID_API}/football-league-team`,
-                    params: { teamid: homeTeamId },
-                    headers: {
-                        'X-RapidAPI-Key': process.env.X_RAPIDAPI_KEY,
-                        'X-RapidAPI-Host': process.env.X_RAPIDAPI_HOST
-                    },
-                    timeout: 10000 
-                };
+                // const optionsHomeTeam = {
+                //     method: 'GET',
+                //     url: `${process.env.URL_RAPID_API}/football-league-team`,
+                //     params: { teamid: homeTeamId },
+                //     headers: {
+                //         'X-RapidAPI-Key': process.env.X_RAPIDAPI_KEY,
+                //         'X-RapidAPI-Host': process.env.X_RAPIDAPI_HOST
+                //     },
+                //     timeout: 10000 
+                // };
 
-                const optionsAwayTeam = {
-                    method: 'GET',
-                    url: `${process.env.URL_RAPID_API}/football-league-team`,
-                    params: { teamid: awayTeamId },
-                    headers: {
-                        'X-RapidAPI-Key': process.env.X_RAPIDAPI_KEY,
-                        'X-RapidAPI-Host': process.env.X_RAPIDAPI_HOST
-                    },
-                    timeout: 10000 
-                };
+                // const optionsAwayTeam = {
+                //     method: 'GET',
+                //     url: `${process.env.URL_RAPID_API}/football-league-team`,
+                //     params: { teamid: awayTeamId },
+                //     headers: {
+                //         'X-RapidAPI-Key': process.env.X_RAPIDAPI_KEY,
+                //         'X-RapidAPI-Host': process.env.X_RAPIDAPI_HOST
+                //     },
+                //     timeout: 10000 
+                // };
 
-                const [responseHomeTeam, responseAwayTeam]: any = await Promise.all([
-                    axios.request(optionsHomeTeam),
-                    axios.request(optionsAwayTeam)
-                ]);
+                // const [responseHomeTeam, responseAwayTeam]: any = await Promise.all([
+                //     axios.request(optionsHomeTeam),
+                //     axios.request(optionsAwayTeam)
+                // ]);
+
+								// const startTimestamp = event?.startTimestamp; 
+								// const startDate = new Date(startTimestamp * 1000);
+
+								// const formattedDate = startDate.toLocaleString('pt-BR', {
+								// 		timeZone: 'UTC', 
+								// 		year: 'numeric',
+								// 		month: '2-digit',
+								// 		day: '2-digit',
+								// 		hour: '2-digit',
+								// 		minute: '2-digit',
+								// 		second: '2-digit',
+								// });
 
                 eventsToday.push({
                     homeTeam: event?.homeTeam?.name,
@@ -38278,8 +38291,9 @@ export class MongoTournamentRepository implements TournamentRepositoryPort {
                     roundInfo: event?.roundInfo,
                     status: event?.status?.type,
                     tournament: event?.season?.name,
-										homeTeamLogo: responseHomeTeam?.data?.response?.team?.logourl,
-										awayTeamLogo: responseAwayTeam?.data?.response?.team?.logourl,
+										// homeTeamLogo: responseHomeTeam?.data?.response?.team?.logourl,
+										// awayTeamLogo: responseAwayTeam?.data?.response?.team?.logourl,
+										// formattedDate
                 });
             }
         }
