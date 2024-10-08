@@ -38219,4 +38219,37 @@ export class MongoTournamentRepository implements TournamentRepositoryPort {
       throw new Error('Unable to fetch tournament data');
     }
   }
+
+	async getTournamentByDate(date: string): Promise<any> {
+		const options = {
+			method: 'GET',
+			url: `${process.env.URL_RAPID_API}/football-scheduled-events`,
+			params: { date: date },
+			headers: {
+				'X-RapidAPI-Key': process.env.X_RAPIDAPI_KEY,
+				'X-RapidAPI-Host': process.env.X_RAPIDAPI_HOST
+			},
+			timeout: 10000 
+		};
+
+		const response = await axios.request(options);
+		const eventsToday: any = [];
+		if(response && response?.data?.status === 'success'){
+			const events = response.data?.response?.events || [];
+			await events?.forEach((event: any) => {
+				if(event?.tournament?.category?.slug === 'brazil'){
+					eventsToday.push({
+						homeTeam: event?.homeTeam?.name,
+						awayTeam: event?.awayTeam?.name,
+						homeScore: event?.homeScore?.current,
+						awayScore: event?.awayScore?.current,
+						roundInfo: event?.roundInfo,
+						status: event?.status?.type
+					})
+				}
+			});
+		}
+
+		return eventsToday;
+	}
 }

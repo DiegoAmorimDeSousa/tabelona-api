@@ -21,3 +21,18 @@ export const getTournament = async (req: Request, res: Response) => {
     }
   }
 };
+
+export const getTournamentByDate = async (req: Request, res: Response) => {
+  try {
+    const { date } = req.params;
+    const events = await tournamentService.getTournamentByDate(date);
+
+    return res.status(200).json(events);
+  } catch (error) {
+    if (error instanceof Error) {
+      res.status(400).json({ error: error.message });
+    } else {
+      res.status(400).json({ error: 'An unknown error occurred' });
+    }
+  }
+};

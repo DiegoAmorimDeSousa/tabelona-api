@@ -6,4 +6,8 @@ export class TournamentService {
   async getTournament(tournament: string): Promise<any> {
     return await this.tournamentRepository.getTournament(tournament);
   }
+
+  async getTournamentByDate(date: string): Promise<any> {
+    return await this.tournamentRepository.getTournamentByDate(date);
+  }
 }
