@@ -132,7 +132,7 @@ export class MongoTournamentRepository implements TournamentRepositoryPort {
                     defeat: newDefeat,
                     points: newPoints,
                     proGoals,
-                    onwGoals
+                    onwGoals,
                   }
                 }
                 return season
@@ -275,80 +275,98 @@ export class MongoTournamentRepository implements TournamentRepositoryPort {
     if (response && response?.data?.status === 'success') {
         const events = response.data?.response?.events || [];
 
-        for (const event of events) {
-            if (event?.tournament?.category?.slug === 'brazil') {
-                const homeTeamId = event?.homeTeam?.id;
-                const awayTeamId = event?.awayTeam?.id;
+        const currentDate = new Date(date);
 
-                const optionsHomeTeam = {
-                    method: 'GET',
-                    url: `${process.env.URL_RAPID_API}/football-league-team`,
-                    params: { teamid: homeTeamId },
-                    headers: {
-                        'X-RapidAPI-Key': process.env.X_RAPIDAPI_KEY,
-                        'X-RapidAPI-Host': process.env.X_RAPIDAPI_HOST
-                    },
-                    timeout: 10000 
-                };
+        const startOfDayUTC = Date.UTC(currentDate.getUTCFullYear(), currentDate.getUTCMonth(), currentDate.getUTCDate(), 0, 0, 0) / 1000;
+        const endOfDayUTC = Date.UTC(currentDate.getUTCFullYear(), currentDate.getUTCMonth(), currentDate.getUTCDate(), 23, 59, 59) / 1000;
 
-                const optionsAwayTeam = {
-                    method: 'GET',
-                    url: `${process.env.URL_RAPID_API}/football-league-team`,
-                    params: { teamid: awayTeamId },
-                    headers: {
-                        'X-RapidAPI-Key': process.env.X_RAPIDAPI_KEY,
-                        'X-RapidAPI-Host': process.env.X_RAPIDAPI_HOST
-                    },
-                    timeout: 10000 
-                };
+        const todayGames = events.filter((evento: any) => {
+          const startTimestamp = evento.startTimestamp;
+          const isToday = startTimestamp >= startOfDayUTC && startTimestamp <= endOfDayUTC;
+          const isBrazil = evento?.tournament?.category?.slug === 'brazil';
+          
+          return isToday && isBrazil || isBrazil && evento?.status?.description === 'Not started';
+        });
 
-                const [responseHomeTeam, responseAwayTeam]: any = await Promise.all([
-                    axios.request(optionsHomeTeam),
-                    axios.request(optionsAwayTeam)
-                ]);
-
-                const startTimestamp = event?.startTimestamp; 
-                const statusTime = event?.statusTime;
-
-                const currentTimestamp = Math.floor(Date.now() / 1000); 
-                const elapsedTime = currentTimestamp - startTimestamp;
-
-                let currentMinute = Math.floor(elapsedTime / 60);
-                const totalDuration = statusTime?.max + statusTime?.extra;
-
-                if (elapsedTime > totalDuration) {
-                    currentMinute = Math.floor(totalDuration / 60); 
-                }
-
-                const adjustedStartTimestamp = startTimestamp - 10800; 
-                const startDate = new Date(adjustedStartTimestamp * 1000);
-                const formattedStartDate = startDate.toLocaleString('pt-BR', {
-                    timeZone: 'UTC', 
-                    year: 'numeric',
-                    month: '2-digit',
-                    day: '2-digit',
-                    hour: '2-digit',
-                    minute: '2-digit',
-                    second: '2-digit',
-                });
-
-                eventsToday.push({
-                    homeTeam: event?.homeTeam?.nameCode,
-                    homeTeamFull: event?.homeTeam?.name,
-                    awayTeamFull: event?.awayTeam?.name,
-                    awayTeam: event?.awayTeam?.nameCode,
-                    homeScore: event?.homeScore?.current,
-                    awayScore: event?.awayScore?.current,
-                    roundInfo: event?.roundInfo,
-                    status: event?.status?.type,
-                    tournament: event?.season?.name,
-                    homeTeamLogo: responseHomeTeam?.data?.response?.team?.logourl,
-                    awayTeamLogo: responseAwayTeam?.data?.response?.team?.logourl,
-                    currentMinute: currentMinute - 10,
-                    formattedStartDate
-                });
-            }
-        }
+        for (const event of todayGames) {
+          if (event?.tournament?.category?.slug === 'brazil') {
+      
+              const homeTeamId = event?.homeTeam?.id;
+              const awayTeamId = event?.awayTeam?.id;
+      
+              const optionsHomeTeam = {
+                  method: 'GET',
+                  url: `${process.env.URL_RAPID_API}/football-league-team`,
+                  params: { teamid: homeTeamId },
+                  headers: {
+                      'X-RapidAPI-Key': process.env.X_RAPIDAPI_KEY,
+                      'X-RapidAPI-Host': process.env.X_RAPIDAPI_HOST
+                  },
+                  timeout: 10000 
+              };
+      
+              const optionsAwayTeam = {
+                  method: 'GET',
+                  url: `${process.env.URL_RAPID_API}/football-league-team`,
+                  params: { teamid: awayTeamId },
+                  headers: {
+                      'X-RapidAPI-Key': process.env.X_RAPIDAPI_KEY,
+                      'X-RapidAPI-Host': process.env.X_RAPIDAPI_HOST
+                  },
+                  timeout: 10000 
+              };
+      
+              const [responseHomeTeam, responseAwayTeam]: any = await Promise.all([
+                  axios.request(optionsHomeTeam),
+                  axios.request(optionsAwayTeam)
+              ]);
+      
+              const startTimestamp = event?.startTimestamp; 
+              const statusTime = event?.statusTime;
+              const currentTimestamp = Math.floor(Date.now() / 1000); 
+      
+              const isInProgress = event?.status?.type === 'inprogress';
+      
+              let currentMinute = 0;
+              if (isInProgress) {
+                  const elapsedTime = currentTimestamp - startTimestamp;
+                  currentMinute = Math.floor(elapsedTime / 60);
+                  const totalDuration = statusTime?.max + statusTime?.extra;
+      
+                  if (elapsedTime > totalDuration) {
+                      currentMinute = Math.floor(totalDuration / 60); 
+                  }
+              }
+      
+              const adjustedStartTimestamp = startTimestamp - 10800; 
+              const startDate = new Date(adjustedStartTimestamp * 1000);
+              const formattedStartDate = startDate.toLocaleString('pt-BR', {
+                  timeZone: 'UTC', 
+                  year: 'numeric',
+                  month: '2-digit',
+                  day: '2-digit',
+                  hour: '2-digit',
+                  minute: '2-digit',
+                  second: '2-digit',
+              });
+      
+              eventsToday.push({
+                  homeTeam: event?.homeTeam?.nameCode,
+                  homeTeamFull: event?.homeTeam?.name,
+                  awayTeamFull: event?.awayTeam?.name,
+                  awayTeam: event?.awayTeam?.nameCode,
+                  homeScore: event?.homeScore?.current,
+                  awayScore: event?.awayScore?.current,
+                  roundInfo: event?.roundInfo,
+                  status: event?.status?.type,
+                  tournament: event?.season?.name,
+                  homeTeamLogo: responseHomeTeam?.data?.response?.team?.logourl,
+                  awayTeamLogo: responseAwayTeam?.data?.response?.team?.logourl,
+                  currentMinute: isInProgress ? currentMinute - 1: 0, 
+                  formattedStartDate
+              });
+          }
+      }      
     }
 
     return eventsToday;

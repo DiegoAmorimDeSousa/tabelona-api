@@ -171,7 +171,7 @@ export class MongoItemRepository implements TeamRepositoryPort {
     if (!itemDoc) {
       return null; 
     }
-    
+  
     return new Team(
       itemDoc.id,
       itemDoc.name,
