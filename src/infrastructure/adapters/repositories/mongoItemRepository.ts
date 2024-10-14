@@ -80,8 +80,8 @@ export class MongoItemRepository implements TeamRepositoryPort {
       const getSerieABrasil = doc.season.filter((season: any) => season.name === 'Série A - Brasil');
       const getSerieBBrasil = doc.season.filter((season: any) => season.name === 'Série B - Brasil');
       
-      if(getSerieABrasil.length) serieABrasil.push({...getSerieABrasil[0]?._doc, name: doc.name, logo: doc.logo})
-      if(getSerieBBrasil.length) serieBBrasil.push({...getSerieBBrasil[0]?._doc, name: doc.name, logo: doc.logo})
+      if(getSerieABrasil.length) serieABrasil.push({...getSerieABrasil[0]?._doc, name: doc.name, logo: doc.logo, _id: doc?._id })
+      if(getSerieBBrasil.length) serieBBrasil.push({...getSerieBBrasil[0]?._doc, name: doc.name, logo: doc.logo, _id: doc?._id })
 
       const team = new Team(
         doc.id,
@@ -154,6 +154,24 @@ export class MongoItemRepository implements TeamRepositoryPort {
 
     await itemDoc.save();
 
+    return new Team(
+      itemDoc.id,
+      itemDoc.name,
+      itemDoc.logo,
+      itemDoc.slug,
+      itemDoc.updateAt,
+      itemDoc.address,
+      itemDoc.season
+    );
+  }
+
+  async getTeam(_id: string): Promise<Team | null> {
+    const itemDoc = await TeamModel.findOne({ _id: _id });
+  
+    if (!itemDoc) {
+      return null; 
+    }
+    
     return new Team(
       itemDoc.id,
       itemDoc.name,

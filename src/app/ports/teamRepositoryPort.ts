@@ -6,4 +6,5 @@ export interface TeamRepositoryPort {
   getTeamBySlug(slug: string): Promise<Team | null>;
   update(team: any): Promise<Team | null>;
   getTables(): Promise<any>;
+  getTeam(name: String): Promise<Team | null>;
 }

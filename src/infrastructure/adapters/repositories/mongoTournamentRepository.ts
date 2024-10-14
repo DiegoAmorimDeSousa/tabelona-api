@@ -153,7 +153,101 @@ export class MongoTournamentRepository implements TournamentRepositoryPort {
 
         const tables = await teamService.getTables();
 
-        return tables
+        if (tables) {
+          const updatedTables = await Promise.all(
+            tables.map(async (table: any, index: number) => {
+              if (index === 0) {
+                const updatedSerieA = await Promise.all(
+                  table?.serieABrasil?.map(async (serieA: any, indexSerie: number) => {
+                    const team = await teamService.getTeam(serieA?._id);
+                    
+                    if (team) {
+                      const season: any = team?.season?.find((data: any) => data?.name === 'Série A - Brasil');
+
+                      if (season) {
+                        const newTeamSeason = team?.season.map((season: any) => {
+                          if (season?.name === 'Série A - Brasil') {
+                            return {
+                              ...season?._doc,
+                              position: indexSerie + 1
+                            };
+                          } else {
+                            return season;
+                          }
+                        });
+
+                        const updateItemData = {
+                          ...team,
+                          season: newTeamSeason
+                        };
+                        await teamService.update(updateItemData);
+
+                        return {
+                          ...serieA,
+                          currentPosition: indexSerie + 1
+                        };
+                      }
+                    }
+
+                    return {
+                      ...serieA,
+                      currentPosition: indexSerie + 1
+                    };
+                  })
+                );
+
+                const updatedSerieB = await Promise.all(
+                  table?.serieBBrasil?.map(async (serieB: any, indexSerie: number) => {
+                    const team = await teamService.getTeam(serieB?._id);
+                    
+                    if (team) {
+                      const season: any = team?.season?.find((data: any) => data?.name === 'Série B - Brasil');
+
+                      if (season) {
+                        const newTeamSeason = team?.season.map((season: any) => {
+                          if (season?.name === 'Série B - Brasil') {
+                            return {
+                              ...season?._doc,
+                              position: indexSerie + 1
+                            };
+                          } else {
+                            return season;
+                          }
+                        });
+
+                        const updateItemData = {
+                          ...team,
+                          season: newTeamSeason
+                        };
+                        await teamService.update(updateItemData);
+
+                        return {
+                          ...serieB,
+                          currentPosition: indexSerie + 1
+                        };
+                      }
+                    }
+
+                    return {
+                      ...serieB,
+                      currentPosition: indexSerie + 1
+                    };
+                  })
+                );
+
+                return {
+                  ...table,
+                  serieABrasil: updatedSerieA,
+                  serieBBrasil: updatedSerieB
+                };
+              } else {
+                return table;
+              }
+            })
+          );
+
+          return updatedTables;
+        }
       } else {
         throw new Error('Failed to fetch tournament data');
       }
@@ -213,27 +307,23 @@ export class MongoTournamentRepository implements TournamentRepositoryPort {
                     axios.request(optionsAwayTeam)
                 ]);
 
-                // Cálculo da minutagem atual do jogo
                 const startTimestamp = event?.startTimestamp; 
                 const statusTime = event?.statusTime;
 
                 const currentTimestamp = Math.floor(Date.now() / 1000); 
-                const elapsedTime = currentTimestamp - startTimestamp; // Tempo decorrido desde o início do jogo
+                const elapsedTime = currentTimestamp - startTimestamp;
 
-                // Calcular a minutagem atual
                 let currentMinute = Math.floor(elapsedTime / 60);
-                const totalDuration = statusTime?.max + statusTime?.extra; // Tempo total permitido
+                const totalDuration = statusTime?.max + statusTime?.extra;
 
-                // Limitar a minutagem ao total do jogo
                 if (elapsedTime > totalDuration) {
-                    currentMinute = Math.floor(totalDuration / 60); // Não pode ultrapassar o total
+                    currentMinute = Math.floor(totalDuration / 60); 
                 }
 
-                // Ajustar o startTimestamp para o fuso horário correto (menos 3 horas)
-                const adjustedStartTimestamp = startTimestamp - 10800; // Subtrai 3 horas em segundos
+                const adjustedStartTimestamp = startTimestamp - 10800; 
                 const startDate = new Date(adjustedStartTimestamp * 1000);
                 const formattedStartDate = startDate.toLocaleString('pt-BR', {
-                    timeZone: 'UTC', // Ajuste para o fuso horário desejado, se necessário
+                    timeZone: 'UTC', 
                     year: 'numeric',
                     month: '2-digit',
                     day: '2-digit',

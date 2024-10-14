@@ -16,6 +16,10 @@ export class TeamService {
     return await this.teamRepository.getAllTeams();
   }
 
+  async getTeam(name: string): Promise<Team | null> {
+    return await this.teamRepository.getTeam(name);
+  }
+
   async getTeamBySlug(slug: string): Promise<Team | null> {
     return await this.teamRepository.getTeamBySlug(slug);
   }
