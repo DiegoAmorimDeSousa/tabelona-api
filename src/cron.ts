@@ -1,5 +1,5 @@
 import { TeamService } from './app/services/teamService'; 
-import { MongoItemRepository } from './infrastructure/adapters/repositories/mongoItemRepository';
+import { MongoItemRepository } from './infrastructure/adapters/repositories/mongoTeamRepository';
 import { connectDB } from './infrastructure/config/database';
 
 const itemRepository = new MongoItemRepository();

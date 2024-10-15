@@ -1,4 +1,4 @@
 export interface TournamentRepositoryPort {
-  getTournament(tournament: string): Promise<any>;
+  getTournament(): Promise<any>;
   getTournamentByDate(date: string): Promise<any>;
 }

@@ -1,16 +1,14 @@
 import { TournamentRepositoryPort } from '../../../app/ports/tournamentRepository';
 import axios from 'axios';
-import { MongoItemRepository } from './mongoItemRepository';
+import { MongoItemRepository } from './mongoTeamRepository';
 import { TeamService } from '../../../app/services/teamService';
 
 const itemRepository = new MongoItemRepository();
 const teamService = new TeamService(itemRepository);
 
 export class MongoTournamentRepository implements TournamentRepositoryPort {
-  async getTournament(tournament: string): Promise<any> {
+  async getTournament(): Promise<any> {
     try {
-      console.log('tournament', tournament);
-
       const today = new Date();
       const year = today.getFullYear();
       const month = String(today.getMonth() + 1).padStart(2, '0');

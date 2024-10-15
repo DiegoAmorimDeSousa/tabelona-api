@@ -1,3 +1,11 @@
+import { Season } from "./Season";
+
+export interface Address {
+  country: string;
+  state: string;
+  city: string;
+}
+
 export class Team {
   constructor(
     public id: string,
@@ -5,24 +13,7 @@ export class Team {
     public logo: string,
     public slug: string,
     public updateAt: string,
-    public address: {
-      country: string,
-      state: string,
-      city: string,
-    },
-    public season: [
-      {
-        name: string,
-        position: number,
-        wins: number,
-        points: number,
-        draws: number,
-        defeat: number,
-        proGoals: number,
-        onwGoals: number,
-        stagePlayOff?: string,
-        status: string
-      }
-    ],
+    public address: Address,
+    public season: Season[]
   ) {}
 }

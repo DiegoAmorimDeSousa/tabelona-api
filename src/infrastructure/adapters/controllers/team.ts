@@ -1,9 +1,9 @@
 import { Request, Response } from 'express';
 import { TeamService } from '../../../app/services/teamService';
-import { MongoItemRepository } from '../repositories/mongoItemRepository';
-import cron from 'node-cron';
+import { MongoItemRepository } from '../repositories/mongoTeamRepository';
 import { MongoTournamentRepository } from '../repositories/mongoTournamentRepository';
 import { TournamentService } from '../../../app/services/tournamentService';
+import logger from '../../../utils/logger';
 
 const itemRepository = new MongoItemRepository();
 const teamService = new TeamService(itemRepository);
@@ -13,10 +13,11 @@ const tournamentService = new TournamentService(tournamentRepository);
 
 const fetchAllTeamsAutomatically = async () => {
   try {
-    await tournamentService.getTournament('');
-    console.log('------ CRON REALIZADO ------')
-  } catch (error) {
-    console.error('Erro ao obter times automaticamente:', error);
+    logger.info('Init process cron');
+    await tournamentService.getTournament();
+    logger.info('CRON process success');
+  } catch (error: any) {
+    logger.error(`Erro: ${error?.message} | Stack: ${error?.stack}`)
   }
 };
 
@@ -37,10 +38,12 @@ export const addTeam = async (req: Request, res: Response) => {
 
 export const fetchAllTeamsEndpoint = async (req: Request, res: Response) => {
   try {
-    console.log('----- INICIANDO O CRON -----')
+    logger.info('Init process cron by endpoint');
     await fetchAllTeamsAutomatically();
+    logger.info('CRON process by endpoint success');
     return res.status(200).json({ message: 'Teams fetched successfully' });
   } catch (error: any) {
+    logger.error(`Erro: ${error?.message} | Stack: ${error?.stack}`)
     res.status(500).json({ error: error.message });
   }
 };
