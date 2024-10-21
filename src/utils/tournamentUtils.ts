@@ -2,9 +2,6 @@ import { TeamService } from "../app/services/teamService";
 import { HomeAwayTeam, Pontuation, Season, Team } from "../domain/entities";
 import { MongoItemRepository } from "../infrastructure/adapters/repositories/mongoTeamRepository";
 
-const itemRepository = new MongoItemRepository();
-const teamService = new TeamService(itemRepository);
-
 export function filterSeasonByName(seasons: { name: string; position: number; wins: number; points: number; draws: number; defeat: number; proGoals: number; onwGoals: number; stagePlayOff?: string; status: string }[], leagueName: string): Season[] {
   return seasons
     .filter(season => season.name === leagueName) 
@@ -73,27 +70,34 @@ export async function updateNewSeason(homeTeam: Team, newPontuation: Pontuation)
 }
 
 export async function updatePositionTables(tables: any) {
-  await tables.map(async (table: any, index: number) => {
-    if (index === 0) {
-      const updatedSerieA = updateByTable(table?.serieABrasil, 'Série A - Brasil');
-      const updatedSerieB = updateByTable(table?.serieBBrasil, 'Série B - Brasil');
+  const updatedTables = await Promise.all(
+    tables.map(async (table: any, index: number) => {
+      if (index === 0) {
+        const updatedSerieA = await updateByTable(table?.serieABrasil, 'Série A - Brasil');
+        const updatedSerieB = await updateByTable(table?.serieBBrasil, 'Série B - Brasil');
 
-      return {
-        ...table,
-        serieABrasil: updatedSerieA,
-        serieBBrasil: updatedSerieB
-      };
-    } else {
-      return table;
-    }
-  })
+        return {
+          ...table,
+          serieABrasil: updatedSerieA,
+          serieBBrasil: updatedSerieB
+        };
+      } else {
+        return table;
+      }
+    })
+  );
+
+  return updatedTables;
 }
 
-export async function updateByTable(table: any, seasonName: string){
-  await Promise.all(
+export async function updateByTable(table: any, seasonName: string) {
+  const itemRepository = new MongoItemRepository();
+  const teamService = new TeamService(itemRepository);
+
+  const updatedTable = await Promise.all(
     table?.map(async (tableMap: any, indexSerie: number) => {
       const team = await teamService.getTeam(tableMap?._id);
-      
+
       if (team) {
         const season: any = team?.season?.find((data: any) => data?.name === seasonName);
 
@@ -113,6 +117,7 @@ export async function updateByTable(table: any, seasonName: string){
             ...team,
             season: newTeamSeason
           };
+
           await teamService.update(updateItemData);
 
           return {
@@ -128,6 +133,8 @@ export async function updateByTable(table: any, seasonName: string){
       };
     })
   );
+
+  return updatedTable; 
 }
 
 export function todayGames(date: any, events: any){
