@@ -103,3 +103,101 @@
 2024-10-15 19:12:05 [[32minfo[39m]: Server is running on port 3001
 2024-10-15 19:12:07 [[32minfo[39m]: Método: GET | URL: /tournament | Params: {} | Body: {}
 2024-10-15 19:12:17 [[32minfo[39m]: ::1 - - [15/Oct/2024:22:12:17 +0000] "GET /tournament HTTP/1.1" 200 17449 "-" "insomnia/2023.5.8"
+2024-10-21 18:08:13 [[32minfo[39m]: Connected to MongoDB
+2024-10-21 18:08:13 [[32minfo[39m]: Server is running on port 3001
+2024-10-21 18:09:18 [[32minfo[39m]: Método: GET | URL: /tournament/serieABrasil | Params: {} | Body: {}
+2024-10-21 18:09:18 [[32minfo[39m]: ::1 - - [21/Oct/2024:21:09:18 +0000] "GET /tournament/serieABrasil HTTP/1.1" 404 162 "http://localhost:5173/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36"
+2024-10-21 18:09:18 [[32minfo[39m]: Método: GET | URL: /events/2024-10-21 | Params: {} | Body: {}
+2024-10-21 18:09:18 [[32minfo[39m]: Método: GET | URL: /tournament/serieABrasil | Params: {} | Body: {}
+2024-10-21 18:09:18 [[32minfo[39m]: ::1 - - [21/Oct/2024:21:09:18 +0000] "GET /tournament/serieABrasil HTTP/1.1" 404 162 "http://localhost:5173/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36"
+2024-10-21 18:09:20 [[32minfo[39m]: ::1 - - [21/Oct/2024:21:09:20 +0000] "GET /events/2024-10-21 HTTP/1.1" 200 371 "http://localhost:5173/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36"
+2024-10-21 18:09:20 [[32minfo[39m]: Método: GET | URL: /events/2024-10-21 | Params: {} | Body: {}
+2024-10-21 18:09:21 [[32minfo[39m]: ::1 - - [21/Oct/2024:21:09:21 +0000] "GET /events/2024-10-21 HTTP/1.1" 304 - "http://localhost:5173/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36"
+2024-10-21 18:10:11 [[32minfo[39m]: Método: GET | URL: /tournament | Params: {} | Body: {}
+2024-10-21 18:10:16 [[32minfo[39m]: ::1 - - [21/Oct/2024:21:10:16 +0000] "GET /tournament HTTP/1.1" - - "http://localhost:5173/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36"
+2024-10-21 18:10:16 [[32minfo[39m]: Método: GET | URL: /tournament | Params: {} | Body: {}
+2024-10-21 18:10:17 [[32minfo[39m]: Método: GET | URL: /events/2024-10-21 | Params: {} | Body: {}
+2024-10-21 18:10:18 [[32minfo[39m]: ::1 - - [21/Oct/2024:21:10:18 +0000] "GET /events/2024-10-21 HTTP/1.1" 304 - "http://localhost:5173/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36"
+2024-10-21 18:10:18 [[32minfo[39m]: Método: GET | URL: /events/2024-10-21 | Params: {} | Body: {}
+2024-10-21 18:10:19 [[32minfo[39m]: ::1 - - [21/Oct/2024:21:10:19 +0000] "GET /events/2024-10-21 HTTP/1.1" 304 - "http://localhost:5173/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36"
+2024-10-21 18:10:28 [[32minfo[39m]: ::1 - - [21/Oct/2024:21:10:28 +0000] "GET /tournament HTTP/1.1" 200 17450 "http://localhost:5173/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36"
+2024-10-21 18:10:28 [[32minfo[39m]: Método: GET | URL: /tournament | Params: {} | Body: {}
+2024-10-21 18:10:33 [[32minfo[39m]: ::1 - - [21/Oct/2024:21:10:33 +0000] "GET /tournament HTTP/1.1" 304 - "http://localhost:5173/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36"
+2024-10-21 18:10:50 [[32minfo[39m]: Método: GET | URL: /tournament | Params: {} | Body: {}
+2024-10-21 18:10:55 [[32minfo[39m]: ::1 - - [21/Oct/2024:21:10:55 +0000] "GET /tournament HTTP/1.1" 304 - "http://localhost:5173/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36"
+2024-10-21 18:11:04 [[32minfo[39m]: Método: GET | URL: /tournament | Params: {} | Body: {}
+2024-10-21 18:11:09 [[32minfo[39m]: ::1 - - [21/Oct/2024:21:11:09 +0000] "GET /tournament HTTP/1.1" 304 - "http://localhost:5173/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36"
+2024-10-21 18:12:10 [[32minfo[39m]: Connected to MongoDB
+2024-10-21 18:12:10 [[32minfo[39m]: Server is running on port 3001
+2024-10-21 18:12:20 [[32minfo[39m]: Connected to MongoDB
+2024-10-21 18:12:20 [[32minfo[39m]: Server is running on port 3001
+2024-10-21 18:12:36 [[32minfo[39m]: Connected to MongoDB
+2024-10-21 18:12:36 [[32minfo[39m]: Server is running on port 3001
+2024-10-21 18:13:13 [[32minfo[39m]: Connected to MongoDB
+2024-10-21 18:13:13 [[32minfo[39m]: Server is running on port 3001
+2024-10-21 18:14:04 [[32minfo[39m]: Connected to MongoDB
+2024-10-21 18:14:04 [[32minfo[39m]: Server is running on port 3001
+2024-10-21 18:15:20 [[32minfo[39m]: Connected to MongoDB
+2024-10-21 18:15:20 [[32minfo[39m]: Server is running on port 3001
+2024-10-21 18:17:14 [[32minfo[39m]: Connected to MongoDB
+2024-10-21 18:17:14 [[32minfo[39m]: Server is running on port 3001
+2024-10-21 18:18:18 [[32minfo[39m]: Connected to MongoDB
+2024-10-21 18:18:18 [[32minfo[39m]: Server is running on port 3001
+2024-10-21 18:19:09 [[32minfo[39m]: Connected to MongoDB
+2024-10-21 18:19:09 [[32minfo[39m]: Server is running on port 3001
+2024-10-21 18:20:14 [[32minfo[39m]: Connected to MongoDB
+2024-10-21 18:20:14 [[32minfo[39m]: Server is running on port 3001
+2024-10-21 18:21:14 [[32minfo[39m]: Connected to MongoDB
+2024-10-21 18:21:14 [[32minfo[39m]: Server is running on port 3001
+2024-10-21 18:21:28 [[32minfo[39m]: Connected to MongoDB
+2024-10-21 18:21:28 [[32minfo[39m]: Server is running on port 3001
+2024-10-21 18:21:46 [[32minfo[39m]: Connected to MongoDB
+2024-10-21 18:21:46 [[32minfo[39m]: Server is running on port 3001
+2024-10-21 18:23:07 [[32minfo[39m]: Connected to MongoDB
+2024-10-21 18:23:07 [[32minfo[39m]: Server is running on port 3001
+2024-10-21 18:23:14 [[32minfo[39m]: Connected to MongoDB
+2024-10-21 18:23:14 [[32minfo[39m]: Server is running on port 3001
+2024-10-21 18:23:59 [[32minfo[39m]: Connected to MongoDB
+2024-10-21 18:23:59 [[32minfo[39m]: Server is running on port 3001
+2024-10-21 18:24:28 [[32minfo[39m]: Connected to MongoDB
+2024-10-21 18:24:28 [[32minfo[39m]: Server is running on port 3001
+2024-10-21 18:24:49 [[32minfo[39m]: Connected to MongoDB
+2024-10-21 18:24:49 [[32minfo[39m]: Server is running on port 3001
+2024-10-21 18:25:09 [[32minfo[39m]: Connected to MongoDB
+2024-10-21 18:25:09 [[32minfo[39m]: Server is running on port 3001
+2024-10-21 18:25:51 [[32minfo[39m]: Connected to MongoDB
+2024-10-21 18:25:51 [[32minfo[39m]: Server is running on port 3001
+2024-10-21 18:27:06 [[32minfo[39m]: Connected to MongoDB
+2024-10-21 18:27:06 [[32minfo[39m]: Server is running on port 3001
+2024-10-21 18:27:39 [[32minfo[39m]: Connected to MongoDB
+2024-10-21 18:27:39 [[32minfo[39m]: Server is running on port 3001
+2024-10-21 18:28:02 [[32minfo[39m]: Connected to MongoDB
+2024-10-21 18:28:02 [[32minfo[39m]: Server is running on port 3001
+2024-10-21 18:28:19 [[32minfo[39m]: Connected to MongoDB
+2024-10-21 18:28:19 [[32minfo[39m]: Server is running on port 3001
+2024-10-21 18:28:29 [[32minfo[39m]: Connected to MongoDB
+2024-10-21 18:28:29 [[32minfo[39m]: Server is running on port 3001
+2024-10-21 18:28:57 [[32minfo[39m]: Connected to MongoDB
+2024-10-21 18:28:57 [[32minfo[39m]: Server is running on port 3001
+2024-10-21 18:29:21 [[32minfo[39m]: Connected to MongoDB
+2024-10-21 18:29:21 [[32minfo[39m]: Server is running on port 3001
+2024-10-21 18:29:44 [[32minfo[39m]: Connected to MongoDB
+2024-10-21 18:29:44 [[32minfo[39m]: Server is running on port 3001
+2024-10-21 18:29:58 [[32minfo[39m]: Connected to MongoDB
+2024-10-21 18:29:58 [[32minfo[39m]: Server is running on port 3001
+2024-10-21 18:30:03 [[32minfo[39m]: Connected to MongoDB
+2024-10-21 18:30:03 [[32minfo[39m]: Server is running on port 3001
+2024-10-21 18:31:17 [[32minfo[39m]: Connected to MongoDB
+2024-10-21 18:31:17 [[32minfo[39m]: Server is running on port 3001
+2024-10-21 18:34:52 [[32minfo[39m]: Método: GET | URL: /tournament | Params: {} | Body: {}
+2024-10-21 18:34:52 [[32minfo[39m]: Método: GET | URL: /events/2024-10-21 | Params: {} | Body: {}
+2024-10-21 18:34:54 [[32minfo[39m]: ::1 - - [21/Oct/2024:21:34:54 +0000] "GET /events/2024-10-21 HTTP/1.1" 304 - "http://localhost:5173/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36"
+2024-10-21 18:34:54 [[32minfo[39m]: Método: GET | URL: /events/2024-10-21 | Params: {} | Body: {}
+2024-10-21 18:34:55 [[32minfo[39m]: ::1 - - [21/Oct/2024:21:34:55 +0000] "GET /events/2024-10-21 HTTP/1.1" 304 - "http://localhost:5173/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36"
+2024-10-21 18:35:04 [[32minfo[39m]: ::1 - - [21/Oct/2024:21:35:04 +0000] "GET /tournament HTTP/1.1" 304 - "http://localhost:5173/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36"
+2024-10-21 18:35:04 [[32minfo[39m]: Método: GET | URL: /tournament | Params: {} | Body: {}
+2024-10-21 18:35:11 [[32minfo[39m]: ::1 - - [21/Oct/2024:21:35:11 +0000] "GET /tournament HTTP/1.1" 304 - "http://localhost:5173/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36"
+2024-10-21 18:37:41 [[32minfo[39m]: Connected to MongoDB
+2024-10-21 18:37:41 [[32minfo[39m]: Server is running on port 3001
+2024-10-21 18:38:12 [[32minfo[39m]: Connected to MongoDB
+2024-10-21 18:38:12 [[32minfo[39m]: Server is running on port 3001
