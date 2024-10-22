@@ -37,8 +37,8 @@ export function updatePontuationTeam(homeScore: HomeAwayTeam, awayScore: HomeAwa
 }
 
 export async function updateNewSeason(homeTeam: Team, newPontuation: Pontuation) {
-  await homeTeam?.season?.map((season: any) => {
-    if(season?.status === 'in progress'){
+  const updatedSeasons = homeTeam?.season?.map((season: any) => {
+    if (season?.status === 'in progress') {
       let newWins = season?.wins;
       let newDraws = season?.draws;
       let newDefeat = season?.defeat;
@@ -46,15 +46,16 @@ export async function updateNewSeason(homeTeam: Team, newPontuation: Pontuation)
       const proGoals = season?.proGoals + newPontuation?.goalsPro;
       const onwGoals = season?.onwGoals + newPontuation?.goalsOwn;
 
-      if(newPontuation?.win) {
+      if (newPontuation?.win) {
         newWins = newWins + 1;
         newPoints = newPoints + 3;
-      };
-      if(newPontuation?.draw) {
+      }
+      if (newPontuation?.draw) {
         newDraws = newDraws + 1;
         newPoints = newPoints + 1;
-      };
-      if(newPontuation?.defeat) newDefeat = newDefeat + 1;
+      }
+      if (newPontuation?.defeat) newDefeat = newDefeat + 1;
+
       return {
         ...season?._doc,
         wins: newWins,
@@ -62,11 +63,12 @@ export async function updateNewSeason(homeTeam: Team, newPontuation: Pontuation)
         defeat: newDefeat,
         points: newPoints,
         proGoals,
-        onwGoals
-      }
+        onwGoals,
+      };
     }
-    return season
+    return season;
   });
+  return updatedSeasons;
 }
 
 export async function updatePositionTables(tables: any) {
@@ -146,7 +148,11 @@ export function todayGames(date: any, events: any){
   const todayGames = events.filter((evento: any) => {
     const startTimestamp = evento.startTimestamp;
     const isToday = startTimestamp >= startOfDayUTC && startTimestamp <= endOfDayUTC;
-    const isBrazil = evento?.tournament?.category?.slug === 'brazil';
+    const isBrazil = 
+      evento?.tournament?.category?.slug === 'brazil' || 
+      evento?.tournament?.category?.slug === 'south-america' ||
+      evento?.tournament?.category?.slug === 'europe' ||
+      evento?.tournament?.category?.slug === 'spain'; 
     
     return isToday && isBrazil || isBrazil && evento?.status?.description === 'Not started';
   });

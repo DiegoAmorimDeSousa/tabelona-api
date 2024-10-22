@@ -37,7 +37,7 @@ export class MongoTournamentRepository implements TournamentRepositoryPort {
             ) {
               const newPontuation = updatePontuationTeam(event?.homeScore, event?.awayScore);
 
-							const newSeason = updateNewSeason(homeTeam, newPontuation)
+							const newSeason = await updateNewSeason(homeTeam, newPontuation)
 
               const updateItemData = {
                 ...homeTeam,
@@ -76,9 +76,7 @@ export class MongoTournamentRepository implements TournamentRepositoryPort {
         const tables = await teamService.getTables();
 
         if (tables) {
-          const updatedTables = await updatePositionTables(tables);
-
-          return updatedTables;
+          return tables;
         }
       } else {
         throw new Error('Failed to fetch tournament data');
@@ -100,7 +98,12 @@ export class MongoTournamentRepository implements TournamentRepositoryPort {
       const games = todayGames(date, events);
 
       for (const event of games) {
-        if (event?.tournament?.category?.slug === 'brazil') {
+        if (
+            event?.tournament?.category?.slug === 'brazil' ||
+            event?.tournament?.category?.slug === 'south-america' ||
+            event?.tournament?.category?.slug === 'spain' ||
+            event?.tournament?.category?.slug === 'europe'
+          ) {
           const homeTeamId = event?.homeTeam?.id;
           const awayTeamId = event?.awayTeam?.id;
 

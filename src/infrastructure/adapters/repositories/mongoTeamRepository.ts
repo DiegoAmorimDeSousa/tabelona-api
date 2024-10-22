@@ -24,13 +24,20 @@ export class MongoItemRepository implements TeamRepositoryPort {
     const teamDocs = await TeamModel.find().select('name logo season');
     const serieABrasil: Tournament[] = [];
     const serieBBrasil: Tournament[] = [];
+    const serieAMundo: Tournament[] = [];
     teamDocs.forEach((doc: TeamDocument) => {
       const getSerieABrasil = filterSeasonByName(doc.season, 'Série A - Brasil');
+      const getSerieAMundo = filterSeasonByName(doc.season, 'Série A - Mundo');
       const getSerieBBrasil = filterSeasonByName(doc.season, 'Série B - Brasil');
       
       if (getSerieABrasil.length) {
         const season = getSerieABrasil[0];
         serieABrasil.push(createSeasonData(season, doc.logo, doc._id as string, doc?.name));
+      }
+
+      if (getSerieAMundo.length) {
+        const season = getSerieAMundo[0];
+        serieAMundo.push(createSeasonData(season, doc.logo, doc._id as string, doc?.name));
       }
   
       if (getSerieBBrasil.length) {
@@ -40,9 +47,10 @@ export class MongoItemRepository implements TeamRepositoryPort {
     });
 
     const sortedTeamsSerieABrasil = sortTables(serieABrasil);
+    const sortedTeamsSerieAMundo = sortTables(serieAMundo);
     const sortedTeamsSerieABBrasil = sortTables(serieBBrasil);
 
-    return [new Tables(sortedTeamsSerieABrasil, sortedTeamsSerieABBrasil)];
+    return [new Tables(sortedTeamsSerieABrasil, sortedTeamsSerieABBrasil, sortedTeamsSerieAMundo)];
   }
 
   async getTeamBySlug(slug: string): Promise<Team | null> {

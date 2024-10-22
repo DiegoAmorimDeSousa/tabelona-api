@@ -4,6 +4,7 @@ import { MongoItemRepository } from '../repositories/mongoTeamRepository';
 import { MongoTournamentRepository } from '../repositories/mongoTournamentRepository';
 import { TournamentService } from '../../../app/services/tournamentService';
 import logger from '../../../utils/logger';
+import { updatePositionTables } from '../../../utils/tournamentUtils';
 
 const itemRepository = new MongoItemRepository();
 const teamService = new TeamService(itemRepository);
@@ -15,6 +16,13 @@ const fetchAllTeamsAutomatically = async () => {
   try {
     logger.info('Init process cron');
     await tournamentService.getTournament();
+    const tables = await teamService.getTables();
+
+    if (tables) {
+      const updatedTables = await updatePositionTables(tables);
+
+      return updatedTables;
+    }
     logger.info('CRON process success');
   } catch (error: any) {
     logger.error(`Erro: ${error?.message} | Stack: ${error?.stack}`)
