@@ -449,3 +449,98 @@
 2024-10-22 18:53:42 [[32minfo[39m]: ::1 - - [22/Oct/2024:21:53:42 +0000] "GET /tournament HTTP/1.1" 200 18329 "http://localhost:5173/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36"
 2024-10-22 18:53:42 [[32minfo[39m]: Método: GET | URL: /tournament | Params: {} | Body: {}
 2024-10-22 18:53:42 [[32minfo[39m]: ::1 - - [22/Oct/2024:21:53:42 +0000] "GET /tournament HTTP/1.1" 400 43 "http://localhost:5173/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36"
+2024-10-23 15:53:38 [[32minfo[39m]: Connected to MongoDB
+2024-10-23 15:53:38 [[32minfo[39m]: Server is running on port 3001
+2024-10-23 15:54:12 [[32minfo[39m]: Método: GET | URL: /tournament | Params: {} | Body: {}
+2024-10-23 15:54:21 [[32minfo[39m]: ::1 - - [23/Oct/2024:18:54:21 +0000] "GET /tournament HTTP/1.1" 200 18329 "-" "insomnia/2023.5.8"
+2024-10-23 15:56:41 [[32minfo[39m]: Connected to MongoDB
+2024-10-23 15:56:41 [[32minfo[39m]: Server is running on port 3001
+2024-10-23 15:57:00 [[32minfo[39m]: Método: GET | URL: /events/2024-10-23 | Params: {} | Body: {}
+2024-10-23 15:57:00 [[32minfo[39m]: Método: GET | URL: /tournament | Params: {} | Body: {}
+2024-10-23 15:57:10 [[32minfo[39m]: ::1 - - [23/Oct/2024:18:57:10 +0000] "GET /tournament HTTP/1.1" 200 18329 "http://localhost:5173/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36"
+2024-10-23 15:57:10 [[32minfo[39m]: Método: GET | URL: /tournament | Params: {} | Body: {}
+2024-10-23 15:57:14 [[32minfo[39m]: ::1 - - [23/Oct/2024:18:57:14 +0000] "GET /tournament HTTP/1.1" 304 - "http://localhost:5173/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36"
+2024-10-23 15:57:20 [[32minfo[39m]: Método: GET | URL: /events/2024-10-23 | Params: {} | Body: {}
+2024-10-23 15:57:34 [[32minfo[39m]: ::1 - - [23/Oct/2024:18:57:34 +0000] "GET /events/2024-10-23 HTTP/1.1" 200 20338 "http://localhost:5173/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36"
+2024-10-23 15:57:37 [[32minfo[39m]: Método: GET | URL: /tournament | Params: {} | Body: {}
+2024-10-23 15:57:41 [[32minfo[39m]: ::1 - - [23/Oct/2024:18:57:41 +0000] "GET /tournament HTTP/1.1" 304 - "http://localhost:5173/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36"
+2024-10-23 15:57:46 [[32minfo[39m]: ::1 - - [23/Oct/2024:18:57:46 +0000] "GET /events/2024-10-23 HTTP/1.1" 200 20338 "http://localhost:5173/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36"
+2024-10-23 16:00:26 [[32minfo[39m]: Método: POST | URL: /team | Params: {} | Body: {"name":"Bayern","logo":"https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/FC_Bayern_M%C3%BCnchen_logo_%282017%29.svg/640px-FC_Bayern_M%C3%BCnchen_logo_%282017%29.svg.png","slug":"fc-bayern-munchen","address":{"country":"Alemanha","state":"T","city":"Munique"},"season":[{"name":"Série A - Mundo","position":1,"wins":0,"points":0,"draws":0,"defeat":0,"proGoals":0,"onwGoals":0,"stagePlayOff":"","status":"in progress"}]}
+2024-10-23 16:00:26 [[32minfo[39m]: ::1 - - [23/Oct/2024:19:00:26 +0000] "POST /team HTTP/1.1" 200 4 "-" "insomnia/2023.5.8"
+2024-10-23 16:01:13 [[32minfo[39m]: Método: POST | URL: /team | Params: {} | Body: {"name":"Borussia Dortmund","logo":"https://upload.wikimedia.org/wikipedia/commons/7/74/Borussia_Dortmund.png","slug":"borussia-dortmund","address":{"country":"Alemanha","state":"T","city":"Dortimund"},"season":[{"name":"Série A - Mundo","position":1,"wins":0,"points":0,"draws":0,"defeat":0,"proGoals":0,"onwGoals":0,"stagePlayOff":"","status":"in progress"}]}
+2024-10-23 16:01:13 [[32minfo[39m]: ::1 - - [23/Oct/2024:19:01:13 +0000] "POST /team HTTP/1.1" 200 4 "-" "insomnia/2023.5.8"
+2024-10-23 16:01:56 [[32minfo[39m]: Método: POST | URL: /team | Params: {} | Body: {"name":"Arsenal","logo":"https://upload.wikimedia.org/wikipedia/pt/thumb/5/53/Arsenal_FC.svg/1200px-Arsenal_FC.svg.png","slug":"arsenal","address":{"country":"Inglaterra","state":"T","city":"Londres"},"season":[{"name":"Série A - Mundo","position":1,"wins":0,"points":0,"draws":0,"defeat":0,"proGoals":0,"onwGoals":0,"stagePlayOff":"","status":"in progress"}]}
+2024-10-23 16:01:56 [[32minfo[39m]: ::1 - - [23/Oct/2024:19:01:56 +0000] "POST /team HTTP/1.1" 200 4 "-" "insomnia/2023.5.8"
+2024-10-23 16:02:51 [[32minfo[39m]: Método: POST | URL: /team | Params: {} | Body: {"name":"Manchester City","logo":"https://upload.wikimedia.org/wikipedia/pt/0/02/Manchester_City_Football_Club.png","slug":"manchester-city","address":{"country":"Inglaterra","state":"T","city":"Manchester"},"season":[{"name":"Série A - Mundo","position":1,"wins":0,"points":0,"draws":0,"defeat":0,"proGoals":0,"onwGoals":0,"stagePlayOff":"","status":"in progress"}]}
+2024-10-23 16:02:51 [[32minfo[39m]: ::1 - - [23/Oct/2024:19:02:51 +0000] "POST /team HTTP/1.1" 200 4 "-" "insomnia/2023.5.8"
+2024-10-23 16:04:03 [[32minfo[39m]: Método: POST | URL: /team | Params: {} | Body: {"name":"Liverpool","logo":"https://upload.wikimedia.org/wikipedia/pt/thumb/0/0c/Liverpool_FC.svg/1501px-Liverpool_FC.svg.png","slug":"liverpool","address":{"country":"Inglaterra","state":"T","city":"Liverpool"},"season":[{"name":"Série A - Mundo","position":1,"wins":0,"points":0,"draws":0,"defeat":0,"proGoals":0,"onwGoals":0,"stagePlayOff":"","status":"in progress"}]}
+2024-10-23 16:04:03 [[32minfo[39m]: ::1 - - [23/Oct/2024:19:04:03 +0000] "POST /team HTTP/1.1" 200 4 "-" "insomnia/2023.5.8"
+2024-10-23 16:10:01 [[32minfo[39m]: Método: POST | URL: /team | Params: {} | Body: {"name":"Benfica","logo":"https://upload.wikimedia.org/wikipedia/pt/7/77/SLBenfica3estrelas.png","slug":"benfica","address":{"country":"Portugal","state":"T","city":"Lisboa"},"season":[{"name":"Série A - Mundo","position":1,"wins":0,"points":0,"draws":0,"defeat":0,"proGoals":0,"onwGoals":0,"stagePlayOff":"","status":"in progress"}]}
+2024-10-23 16:10:01 [[32minfo[39m]: ::1 - - [23/Oct/2024:19:10:01 +0000] "POST /team HTTP/1.1" 200 4 "-" "insomnia/2023.5.8"
+2024-10-23 16:10:45 [[32minfo[39m]: Método: POST | URL: /team | Params: {} | Body: {"name":"Porto","logo":"https://upload.wikimedia.org/wikipedia/pt/c/c5/F.C._Porto_logo.png","slug":"fc-porto","address":{"country":"Portugal","state":"T","city":"Porto"},"season":[{"name":"Série A - Mundo","position":1,"wins":0,"points":0,"draws":0,"defeat":0,"proGoals":0,"onwGoals":0,"stagePlayOff":"","status":"in progress"}]}
+2024-10-23 16:10:46 [[32minfo[39m]: ::1 - - [23/Oct/2024:19:10:46 +0000] "POST /team HTTP/1.1" 200 4 "-" "insomnia/2023.5.8"
+2024-10-23 16:11:30 [[32minfo[39m]: Método: POST | URL: /team | Params: {} | Body: {"name":"Sporting","logo":"https://upload.wikimedia.org/wikipedia/pt/3/3e/Sporting_Clube_de_Portugal.png","slug":"sporting","address":{"country":"Portugal","state":"T","city":"Lisboa"},"season":[{"name":"Série A - Mundo","position":1,"wins":0,"points":0,"draws":0,"defeat":0,"proGoals":0,"onwGoals":0,"stagePlayOff":"","status":"in progress"}]}
+2024-10-23 16:11:30 [[32minfo[39m]: ::1 - - [23/Oct/2024:19:11:30 +0000] "POST /team HTTP/1.1" 200 4 "-" "insomnia/2023.5.8"
+2024-10-23 16:15:01 [[32minfo[39m]: Método: POST | URL: /team | Params: {} | Body: {"name":"Inter","logo":"https://logodownload.org/wp-content/uploads/2017/02/inter-milan-logo-0.png","slug":"inter","address":{"country":"Itália","state":"T","city":"Milão"},"season":[{"name":"Série A - Mundo","position":1,"wins":0,"points":0,"draws":0,"defeat":0,"proGoals":0,"onwGoals":0,"stagePlayOff":"","status":"in progress"}]}
+2024-10-23 16:15:01 [[32minfo[39m]: ::1 - - [23/Oct/2024:19:15:01 +0000] "POST /team HTTP/1.1" 200 4 "-" "insomnia/2023.5.8"
+2024-10-23 16:15:32 [[32minfo[39m]: Método: POST | URL: /team | Params: {} | Body: {"name":"Milan","logo":"https://upload.wikimedia.org/wikipedia/commons/thumb/d/d0/Logo_of_AC_Milan.svg/1200px-Logo_of_AC_Milan.svg.png","slug":"milan","address":{"country":"Itália","state":"T","city":"Milão"},"season":[{"name":"Série A - Mundo","position":1,"wins":0,"points":0,"draws":0,"defeat":0,"proGoals":0,"onwGoals":0,"stagePlayOff":"","status":"in progress"}]}
+2024-10-23 16:15:32 [[32minfo[39m]: ::1 - - [23/Oct/2024:19:15:32 +0000] "POST /team HTTP/1.1" 200 4 "-" "insomnia/2023.5.8"
+2024-10-23 16:15:38 [[32minfo[39m]: Método: GET | URL: /tournament | Params: {} | Body: {}
+2024-10-23 16:15:38 [[32minfo[39m]: Método: GET | URL: /events/2024-10-23 | Params: {} | Body: {}
+2024-10-23 16:15:40 [[32minfo[39m]: ::1 - - [23/Oct/2024:19:15:40 +0000] "GET /tournament HTTP/1.1" 400 43 "http://localhost:5173/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36"
+2024-10-23 16:15:40 [[32minfo[39m]: Método: GET | URL: /tournament | Params: {} | Body: {}
+2024-10-23 16:15:43 [[32minfo[39m]: ::1 - - [23/Oct/2024:19:15:43 +0000] "GET /tournament HTTP/1.1" 400 43 "http://localhost:5173/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36"
+2024-10-23 16:15:58 [[32minfo[39m]: Método: GET | URL: /events/2024-10-23 | Params: {} | Body: {}
+2024-10-23 16:16:09 [[32minfo[39m]: ::1 - - [23/Oct/2024:19:16:09 +0000] "GET /events/2024-10-23 HTTP/1.1" 200 20599 "http://localhost:5173/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36"
+2024-10-23 16:16:22 [[32minfo[39m]: ::1 - - [23/Oct/2024:19:16:22 +0000] "GET /events/2024-10-23 HTTP/1.1" 200 20599 "http://localhost:5173/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36"
+2024-10-23 16:17:12 [[32minfo[39m]: Connected to MongoDB
+2024-10-23 16:17:12 [[32minfo[39m]: Server is running on port 3001
+2024-10-23 16:17:16 [[32minfo[39m]: Método: GET | URL: /tournament | Params: {} | Body: {}
+2024-10-23 16:17:16 [[32minfo[39m]: Método: GET | URL: /events/2024-10-23 | Params: {} | Body: {}
+2024-10-23 16:17:24 [[32minfo[39m]: ::1 - - [23/Oct/2024:19:17:24 +0000] "GET /tournament HTTP/1.1" 400 43 "http://localhost:5173/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36"
+2024-10-23 16:17:24 [[32minfo[39m]: Método: GET | URL: /tournament | Params: {} | Body: {}
+2024-10-23 16:17:28 [[32minfo[39m]: ::1 - - [23/Oct/2024:19:17:28 +0000] "GET /tournament HTTP/1.1" 400 43 "http://localhost:5173/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36"
+2024-10-23 16:17:36 [[32minfo[39m]: Método: GET | URL: /events/2024-10-23 | Params: {} | Body: {}
+2024-10-23 16:17:42 [[32minfo[39m]: ::1 - - [23/Oct/2024:19:17:42 +0000] "GET /events/2024-10-23 HTTP/1.1" 200 20599 "http://localhost:5173/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36"
+2024-10-23 16:18:05 [[32minfo[39m]: ::1 - - [23/Oct/2024:19:18:05 +0000] "GET /events/2024-10-23 HTTP/1.1" 200 20599 "http://localhost:5173/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36"
+2024-10-23 16:18:48 [[32minfo[39m]: Connected to MongoDB
+2024-10-23 16:18:48 [[32minfo[39m]: Server is running on port 3001
+2024-10-23 16:18:51 [[32minfo[39m]: Método: POST | URL: /team | Params: {} | Body: {"name":"Milan","logo":"https://upload.wikimedia.org/wikipedia/commons/thumb/d/d0/Logo_of_AC_Milan.svg/1200px-Logo_of_AC_Milan.svg.png","slug":"milan","address":{"country":"Itália","state":"T","city":"Milão"},"season":[{"name":"Série A - Mundo","position":1,"wins":0,"points":0,"draws":0,"defeat":0,"proGoals":0,"onwGoals":0,"stagePlayOff":"","status":"in progress"}]}
+2024-10-23 16:18:51 [[32minfo[39m]: ::1 - - [23/Oct/2024:19:18:51 +0000] "POST /team HTTP/1.1" 200 4 "-" "insomnia/2023.5.8"
+2024-10-23 16:19:00 [[32minfo[39m]: Método: GET | URL: /tournament | Params: {} | Body: {}
+2024-10-23 16:19:01 [[32minfo[39m]: Método: GET | URL: /events/2024-10-23 | Params: {} | Body: {}
+2024-10-23 16:19:09 [[32minfo[39m]: ::1 - - [23/Oct/2024:19:19:09 +0000] "GET /tournament HTTP/1.1" 400 43 "http://localhost:5173/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36"
+2024-10-23 16:19:09 [[32minfo[39m]: Método: GET | URL: /tournament | Params: {} | Body: {}
+2024-10-23 16:19:13 [[32minfo[39m]: ::1 - - [23/Oct/2024:19:19:13 +0000] "GET /tournament HTTP/1.1" 400 43 "http://localhost:5173/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36"
+2024-10-23 16:19:20 [[32minfo[39m]: Método: GET | URL: /events/2024-10-23 | Params: {} | Body: {}
+2024-10-23 16:19:24 [[32minfo[39m]: ::1 - - [23/Oct/2024:19:19:24 +0000] "GET /events/2024-10-23 HTTP/1.1" 200 20599 "http://localhost:5173/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36"
+2024-10-23 16:19:39 [[32minfo[39m]: Connected to MongoDB
+2024-10-23 16:19:39 [[32minfo[39m]: Server is running on port 3001
+2024-10-23 16:19:42 [[32minfo[39m]: Método: GET | URL: /tournament | Params: {} | Body: {}
+2024-10-23 16:19:42 [[32minfo[39m]: Método: GET | URL: /events/2024-10-23 | Params: {} | Body: {}
+2024-10-23 16:19:50 [[32minfo[39m]: ::1 - - [23/Oct/2024:19:19:50 +0000] "GET /tournament HTTP/1.1" 400 43 "http://localhost:5173/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36"
+2024-10-23 16:19:50 [[32minfo[39m]: Método: GET | URL: /tournament | Params: {} | Body: {}
+2024-10-23 16:19:54 [[32minfo[39m]: ::1 - - [23/Oct/2024:19:19:54 +0000] "GET /tournament HTTP/1.1" 400 43 "http://localhost:5173/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36"
+2024-10-23 16:20:02 [[32minfo[39m]: Método: GET | URL: /events/2024-10-23 | Params: {} | Body: {}
+2024-10-23 16:20:06 [[32minfo[39m]: ::1 - - [23/Oct/2024:19:20:06 +0000] "GET /events/2024-10-23 HTTP/1.1" 200 20599 "http://localhost:5173/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36"
+2024-10-23 16:20:26 [[32minfo[39m]: ::1 - - [23/Oct/2024:19:20:26 +0000] "GET /events/2024-10-23 HTTP/1.1" 200 20599 "http://localhost:5173/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36"
+2024-10-23 16:21:17 [[32minfo[39m]: Connected to MongoDB
+2024-10-23 16:21:17 [[32minfo[39m]: Server is running on port 3001
+2024-10-23 16:21:22 [[32minfo[39m]: Método: GET | URL: /tournament | Params: {} | Body: {}
+2024-10-23 16:21:22 [[32minfo[39m]: Método: GET | URL: /events/2024-10-23 | Params: {} | Body: {}
+2024-10-23 16:21:31 [[32minfo[39m]: ::1 - - [23/Oct/2024:19:21:30 +0000] "GET /tournament HTTP/1.1" 400 43 "http://localhost:5173/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36"
+2024-10-23 16:21:31 [[32minfo[39m]: Método: GET | URL: /tournament | Params: {} | Body: {}
+2024-10-23 16:21:34 [[32minfo[39m]: ::1 - - [23/Oct/2024:19:21:34 +0000] "GET /tournament HTTP/1.1" 400 43 "http://localhost:5173/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36"
+2024-10-23 16:21:42 [[32minfo[39m]: Método: GET | URL: /events/2024-10-23 | Params: {} | Body: {}
+2024-10-23 16:21:45 [[32minfo[39m]: ::1 - - [23/Oct/2024:19:21:45 +0000] "GET /events/2024-10-23 HTTP/1.1" 200 20599 "http://localhost:5173/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36"
+2024-10-23 16:21:51 [[32minfo[39m]: ::1 - - [23/Oct/2024:19:21:51 +0000] "GET /events/2024-10-23 HTTP/1.1" 400 47 "http://localhost:5173/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36"
+2024-10-23 16:23:13 [[32minfo[39m]: Connected to MongoDB
+2024-10-23 16:23:13 [[32minfo[39m]: Server is running on port 3001
+2024-10-23 16:23:16 [[32minfo[39m]: Método: GET | URL: /tournament | Params: {} | Body: {}
+2024-10-23 16:23:16 [[32minfo[39m]: Método: GET | URL: /events/2024-10-23 | Params: {} | Body: {}
+2024-10-23 16:23:17 [[32minfo[39m]: ::1 - - [23/Oct/2024:19:23:17 +0000] "GET /events/2024-10-23 HTTP/1.1" 400 47 "http://localhost:5173/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36"
+2024-10-23 16:23:17 [[32minfo[39m]: Método: GET | URL: /events/2024-10-23 | Params: {} | Body: {}
+2024-10-23 16:23:17 [[32minfo[39m]: ::1 - - [23/Oct/2024:19:23:17 +0000] "GET /events/2024-10-23 HTTP/1.1" 400 47 "http://localhost:5173/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36"
+2024-10-23 16:23:24 [[32minfo[39m]: ::1 - - [23/Oct/2024:19:23:24 +0000] "GET /tournament HTTP/1.1" 400 43 "http://localhost:5173/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36"
+2024-10-23 16:23:24 [[32minfo[39m]: Método: GET | URL: /tournament | Params: {} | Body: {}
+2024-10-23 16:23:24 [[32minfo[39m]: ::1 - - [23/Oct/2024:19:23:24 +0000] "GET /tournament HTTP/1.1" 400 43 "http://localhost:5173/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36"

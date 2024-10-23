@@ -37,8 +37,11 @@ export class MongoTournamentRepository implements TournamentRepositoryPort {
             ) {
               const newPontuation = updatePontuationTeam(event?.homeScore, event?.awayScore);
 
-							const newSeason = await updateNewSeason(homeTeam, newPontuation)
+							const newSeasonPromise = updateNewSeason(homeTeam, newPontuation);
 
+              const [newSeason] = await Promise.all([newSeasonPromise]);
+
+              console.log('newSeason', newSeason)
               const updateItemData = {
                 ...homeTeam,
                 updateAt: date,

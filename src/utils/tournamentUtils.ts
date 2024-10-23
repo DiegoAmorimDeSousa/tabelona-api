@@ -37,7 +37,7 @@ export function updatePontuationTeam(homeScore: HomeAwayTeam, awayScore: HomeAwa
 }
 
 export async function updateNewSeason(homeTeam: Team, newPontuation: Pontuation) {
-  const updatedSeasons = homeTeam?.season?.map((season: any) => {
+  const updatedSeasons = await homeTeam?.season?.map((season: any) => {
     if (season?.status === 'in progress') {
       let newWins = season?.wins;
       let newDraws = season?.draws;

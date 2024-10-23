@@ -142,7 +142,8 @@ export class MongoItemRepository implements TeamRepositoryPort {
     if (!itemDoc) {
       throw new Error('Team not found');
     }
-  
+    
+    console.log('team', team)
     itemDoc.name = team.name;
     itemDoc.logo = team.logo;
     itemDoc.address = team.address;
