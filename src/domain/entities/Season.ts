@@ -1,4 +1,6 @@
 export class Season {
+  _doc?: any;
+
   constructor(
     public name: string,
     public position: number,

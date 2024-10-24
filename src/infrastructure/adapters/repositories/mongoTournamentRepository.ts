@@ -25,7 +25,8 @@ export class MongoTournamentRepository implements TournamentRepositoryPort {
             const homeTeamSlug = event?.homeTeam?.slug;
             const awayTeamSlug = event?.awayTeam?.slug;
 						const twoDaysInMs = 2 * 24 * 60 * 60 * 1000;
-						const formattedDateObj = new Date(`${formattedDate}T00:00:00`);
+
+						const formattedDateObj = new Date(`${date}T00:00:00`);
 
             const homeTeam = await teamService.getTeamBySlug(homeTeamSlug);
 						if (
@@ -41,7 +42,6 @@ export class MongoTournamentRepository implements TournamentRepositoryPort {
 
               const [newSeason] = await Promise.all([newSeasonPromise]);
 
-              console.log('newSeason', newSeason)
               const updateItemData = {
                 ...homeTeam,
                 updateAt: date,
@@ -60,7 +60,7 @@ export class MongoTournamentRepository implements TournamentRepositoryPort {
               awayTeam && 
               !awayTeam?.updateAt
             ) {
-              const newPontuation = updatePontuationTeam(event?.homeScore, event?.awayScore);
+              const newPontuation = updatePontuationTeam(event?.awayScore, event?.homeScore);
 				      const newSeason = updateNewSeason(awayTeam, newPontuation)
 
               const updateItemData = {

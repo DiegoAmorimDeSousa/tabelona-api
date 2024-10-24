@@ -37,26 +37,35 @@ export function updatePontuationTeam(homeScore: HomeAwayTeam, awayScore: HomeAwa
 }
 
 export async function updateNewSeason(homeTeam: Team, newPontuation: Pontuation) {
-  const updatedSeasons = await homeTeam?.season?.map((season: any) => {
+  if (!homeTeam || !homeTeam.season) {
+    console.error('Home team or season is undefined', { homeTeam });
+    return null;
+  }
+
+  const updatedSeasons: any[] = [];
+
+  for (const season of homeTeam.season) {
     if (season?.status === 'in progress') {
-      let newWins = season?.wins;
-      let newDraws = season?.draws;
-      let newDefeat = season?.defeat;
-      let newPoints = season?.points;
-      const proGoals = season?.proGoals + newPontuation?.goalsPro;
-      const onwGoals = season?.onwGoals + newPontuation?.goalsOwn;
+      let newWins = season?.wins || 0;
+      let newDraws = season?.draws || 0;
+      let newDefeat = season?.defeat || 0;
+      let newPoints = season?.points || 0;
+      const proGoals = (season?.proGoals || 0) + (newPontuation?.goalsPro || 0);
+      const onwGoals = (season?.onwGoals || 0) + (newPontuation?.goalsOwn || 0);
 
       if (newPontuation?.win) {
-        newWins = newWins + 1;
-        newPoints = newPoints + 3;
+        newWins += 1;
+        newPoints += 3;
       }
       if (newPontuation?.draw) {
-        newDraws = newDraws + 1;
-        newPoints = newPoints + 1;
+        newDraws += 1;
+        newPoints += 1;
       }
-      if (newPontuation?.defeat) newDefeat = newDefeat + 1;
+      if (newPontuation?.defeat) {
+        newDefeat += 1;
+      }
 
-      return {
+      const updatedSeason = {
         ...season?._doc,
         wins: newWins,
         draws: newDraws,
@@ -65,9 +74,12 @@ export async function updateNewSeason(homeTeam: Team, newPontuation: Pontuation)
         proGoals,
         onwGoals,
       };
+      updatedSeasons.push(updatedSeason);
+    } else {
+      updatedSeasons.push(season);
     }
-    return season;
-  });
+  }
+
   return updatedSeasons;
 }
 

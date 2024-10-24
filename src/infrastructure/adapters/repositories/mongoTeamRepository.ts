@@ -142,12 +142,17 @@ export class MongoItemRepository implements TeamRepositoryPort {
     if (!itemDoc) {
       throw new Error('Team not found');
     }
-    
-    console.log('team', team)
+  
+    const resolvedSeasons = await Promise.resolve(team.season);
+  
+    if (!Array.isArray(resolvedSeasons)) {
+      throw new Error('Seasons data is not an array after resolving the promise');
+    }
+  
     itemDoc.name = team.name;
     itemDoc.logo = team.logo;
     itemDoc.address = team.address;
-    itemDoc.season = team.season.map(season => ({
+    itemDoc.season = resolvedSeasons.map(season => ({
       name: season.name,
       position: season.position,
       wins: season.wins,
@@ -167,10 +172,10 @@ export class MongoItemRepository implements TeamRepositoryPort {
       itemDoc.id,
       itemDoc.name,
       itemDoc.logo,
-      itemDoc.slug, 
-      itemDoc.updateAt, 
+      itemDoc.slug,
+      itemDoc.updateAt,
       itemDoc.address,
-      itemDoc.season.map(season => new Season( 
+      itemDoc.season.map(season => new Season(
         season.name,
         season.position,
         season.wins,
@@ -183,5 +188,5 @@ export class MongoItemRepository implements TeamRepositoryPort {
         season.status,
       ))
     );
-  }  
+  } 
 }
